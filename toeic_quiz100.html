@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC Grammar Master — 12 Tenses</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #07091A;
+  --navy2: #0D1230;
+  --card: #111830;
+  --card2: #162040;
+  --gold: #C9962A;
+  --gold2: #E8B84B;
+  --gold3: #F5D580;
+  --cream: #EDE8DA;
+  --muted: #7A8099;
+  --green: #2ECC71;
+  --red: #E74C3C;
+  --blue: #3498DB;
+  --border: rgba(201,150,42,0.25);
+  --glow: rgba(201,150,42,0.15);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 5%, rgba(201,150,42,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 90%, rgba(52,152,219,0.06) 0%, transparent 55%),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
+  pointer-events: none;
+}
+
+/* ── SCREENS ── */
+.screen { display: none; }
+.screen.active { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 40px 20px 60px; min-height: 100vh; position: relative; z-index: 1; }
+
+/* ── BRAND BAR ── */
+.brand {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 12px;
+}
+.brand-icon {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; box-shadow: 0 0 24px rgba(201,150,42,0.4);
+}
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  background: linear-gradient(135deg, var(--gold2), var(--gold3));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.brand-sub { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+
+/* ── START SCREEN ── */
+#start-screen .hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700; line-height: 1.12;
+  text-align: center;
+  max-width: 700px; margin: 32px auto 0;
+  background: linear-gradient(160deg, var(--cream) 0%, var(--gold3) 60%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  font-size: 15px; color: var(--muted); text-align: center;
+  max-width: 520px; margin: 18px auto 0; line-height: 1.7;
+}
+.tense-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px; max-width: 800px; width: 100%; margin: 36px auto;
+}
+.tense-badge {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+  font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+  transition: all 0.25s;
+}
+.tense-badge:hover { border-color: var(--gold); background: var(--card2); transform: translateY(-2px); }
+.badge-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.stat-row {
+  display: flex; gap: 28px; justify-content: center;
+  margin: 10px 0 36px; flex-wrap: wrap;
+}
+.stat-box {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 28px; text-align: center; min-width: 100px;
+}
+.stat-num { font-family: 'Space Mono', monospace; font-size: 32px; color: var(--gold2); font-weight: 700; }
+.stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ── BUTTONS ── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #07091A; border: none; border-radius: 12px;
+  padding: 16px 48px; font-family: 'DM Sans', sans-serif;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 4px 24px rgba(201,150,42,0.4);
+  transition: all 0.25s; letter-spacing: 0.5px;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,150,42,0.55); }
+.btn-primary:active { transform: translateY(0); }
+.btn-secondary {
+  background: transparent; color: var(--gold2);
+  border: 1.5px solid var(--gold); border-radius: 12px;
+  padding: 14px 36px; font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-secondary:hover { background: var(--glow); }
+
+/* ── QUIZ SCREEN ── */
+#quiz-screen { max-width: 820px; width: 100%; margin: 0 auto; }
+.quiz-header {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; margin-bottom: 28px; flex-wrap: wrap; gap: 12px;
+}
+.quiz-meta { display: flex; flex-direction: column; gap: 4px; }
+.quiz-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px; color: var(--gold2);
+  letter-spacing: 1px;
+}
+.quiz-tense-tag {
+  display: inline-block;
+  background: rgba(201,150,42,0.12); border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 14px;
+  font-size: 11px; color: var(--gold3); letter-spacing: 1px; text-transform: uppercase;
+}
+.score-live {
+  font-family: 'Space Mono', monospace; font-size: 14px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 8px 18px; color: var(--gold2);
+}
+.progress-bar-wrap {
+  width: 100%; height: 5px; background: rgba(255,255,255,0.07);
+  border-radius: 99px; margin-bottom: 28px; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  border-radius: 99px; transition: width 0.5s ease;
+}
+.question-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px 40px 32px;
+  width: 100%; margin-bottom: 18px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  animation: cardIn 0.35s ease;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.q-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--muted); margin-bottom: 16px;
+}
+.q-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(17px, 2.5vw, 21px);
+  line-height: 1.65; color: var(--cream);
+  border-left: 3px solid var(--gold); padding-left: 18px;
+  margin-bottom: 8px;
+}
+.blank-hint {
+  font-size: 12px; color: var(--muted); margin: 10px 0 28px;
+  font-style: italic;
+}
+.options-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 560px) { .options-grid { grid-template-columns: 1fr; } }
+.option-btn {
+  background: var(--card2); border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 16px 20px;
+  font-family: 'DM Sans', sans-serif; font-size: 15px;
+  color: var(--cream); cursor: pointer; text-align: left;
+  transition: all 0.2s; display: flex; align-items: center; gap: 12px;
+}
+.option-btn:hover:not(:disabled) {
+  border-color: var(--gold); background: rgba(201,150,42,0.12);
+  transform: translateY(-1px);
+}
+.option-letter {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Mono', monospace; font-size: 12px;
+  font-weight: 700; flex-shrink: 0; transition: all 0.2s;
+}
+.option-btn.correct {
+  border-color: var(--green); background: rgba(46,204,113,0.12);
+}
+.option-btn.correct .option-letter { background: var(--green); color: #07091A; }
+.option-btn.wrong {
+  border-color: var(--red); background: rgba(231,76,60,0.1);
+}
+.option-btn.wrong .option-letter { background: var(--red); color: white; }
+.option-btn.dimmed { opacity: 0.38; }
+.option-btn:disabled { cursor: default; transform: none; }
+
+/* ── EXPLANATION ── */
+.explanation-card {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 20px; padding: 36px; width: 100%;
+  margin-bottom: 20px; display: none;
+  animation: cardIn 0.4s ease;
+}
+.explanation-card.show { display: block; }
+.expl-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+  padding-bottom: 18px; border-bottom: 1px solid var(--border);
+}
+.expl-verdict {
+  font-size: 18px; font-weight: 700;
+  display: flex; align-items: center; gap: 10px;
+}
+.verdict-icon { font-size: 24px; }
+.expl-tense-chip {
+  margin-left: auto;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #07091A; border-radius: 20px; padding: 5px 16px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.expl-section { margin-bottom: 22px; }
+.expl-section:last-child { margin-bottom: 0; }
+.expl-section-title {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--gold2); margin-bottom: 10px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+.expl-section-title::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.expl-text {
+  font-size: 14.5px; line-height: 1.8; color: #C8CFDF;
+}
+.expl-text strong { color: var(--gold3); font-weight: 600; }
+.signal-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.signal-tag {
+  background: rgba(201,150,42,0.12); border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 14px; font-size: 12.5px;
+  color: var(--gold3); font-family: 'Space Mono', monospace;
+}
+.tip-box {
+  background: rgba(52,152,219,0.08); border: 1px solid rgba(52,152,219,0.25);
+  border-radius: 12px; padding: 16px 20px; margin-top: 10px;
+}
+.tip-label { font-size: 11px; color: var(--blue); letter-spacing: 1px; font-weight: 600; margin-bottom: 8px; }
+.tip-text { font-size: 14px; line-height: 1.75; color: #AAB8CC; }
+.next-btn-wrap { display: flex; justify-content: flex-end; margin-top: 8px; }
+
+/* ── RESULT SCREEN ── */
+#result-screen { max-width: 700px; }
+.result-score-ring {
+  position: relative; width: 180px; height: 180px; margin: 32px auto;
+}
+.result-score-ring svg { width: 180px; height: 180px; transform: rotate(-90deg); }
+.ring-bg { fill: none; stroke: rgba(255,255,255,0.07); stroke-width: 12; }
+.ring-fill {
+  fill: none; stroke: url(#goldGrad); stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: 502;
+  stroke-dashoffset: 502;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.22,1,0.36,1);
+}
+.ring-text {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.ring-percent {
+  font-family: 'Space Mono', monospace; font-size: 36px; font-weight: 700;
+  color: var(--gold2); line-height: 1;
+}
+.ring-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.result-title {
+  font-family: 'Playfair Display', serif; font-size: 28px;
+  text-align: center; margin-bottom: 8px;
+}
+.result-msg { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 28px; line-height: 1.6; }
+.result-breakdown {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px; width: 100%; margin-bottom: 28px;
+}
+.breakdown-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px;
+}
+.breakdown-row:last-child { border-bottom: none; }
+.breakdown-label { color: var(--muted); }
+.breakdown-val { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--gold2); }
+.result-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy2); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ── FOOTER ── */
+.quiz-footer-nav { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ START SCREEN ═══════════ -->
+<div id="start-screen" class="screen active">
+  <div class="brand">
+    <div class="brand-icon">📚</div>
+    <div>
+      <div class="brand-name">TOEIC Grammar Master</div>
+      <div class="brand-sub">12 Tenses · Deep Level Training</div>
+    </div>
+  </div>
+
+  <h1 class="hero-title">ฝึก 12 Tenses<br>ระดับ TOEIC จริง</h1>
+  <p class="hero-sub">ข้อสอบระดับปานกลาง–ยาก คัดเฉพาะ Pattern ที่ออกจริงใน TOEIC ครอบคลุมทุก Tense พร้อมเฉลยเชิงลึก + เทคนิคจดจำ</p>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">100</div><div class="stat-label">ข้อสอบทั้งหมด</div></div>
+    <div class="stat-box"><div class="stat-num">10</div><div class="stat-label">ข้อต่อรอบ</div></div>
+    <div class="stat-box"><div class="stat-num">12</div><div class="stat-label">Tenses</div></div>
+  </div>
+
+  <div class="tense-grid">
+    <div class="tense-badge"><div class="badge-dot" style="background:#3498DB"></div>Simple Present</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#2ECC71"></div>Present Continuous</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#E8B84B"></div>Present Perfect</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#E67E22"></div>Pres. Perf. Continuous</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#9B59B6"></div>Simple Past</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#E74C3C"></div>Past Continuous</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#1ABC9C"></div>Past Perfect</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#F39C12"></div>Past Perf. Continuous</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#3498DB"></div>Simple Future</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#2ECC71"></div>Future Continuous</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#E8B84B"></div>Future Perfect</div>
+    <div class="tense-badge"><div class="badge-dot" style="background:#C0392B"></div>Future Perf. Continuous</div>
+  </div>
+
+  <button class="btn-primary" onclick="startQuiz()">🎯 เริ่มทำข้อสอบ 10 ข้อ</button>
+</div>
+
+<!-- ═══════════ QUIZ SCREEN ═══════════ -->
+<div id="quiz-screen" class="screen">
+  <div class="quiz-header" style="max-width:820px;width:100%">
+    <div class="brand" style="margin-bottom:0">
+      <div class="brand-icon" style="width:38px;height:38px;font-size:16px">📚</div>
+      <div class="brand-name" style="font-size:16px">TOEIC Grammar</div>
+    </div>
+    <div class="score-live" id="score-live">✓ 0 &nbsp;|&nbsp; ✗ 0</div>
+  </div>
+
+  <div style="max-width:820px;width:100%">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:8px">
+      <div class="quiz-num" id="quiz-num">ข้อที่ 1 / 10</div>
+      <div class="quiz-tense-tag" id="quiz-tense-tag">Tense</div>
+    </div>
+
+    <div class="question-card" id="question-card">
+      <div class="q-label">เลือกคำที่เหมาะสมที่สุดใส่ในช่องว่าง</div>
+      <div class="q-text" id="q-text"></div>
+      <div class="blank-hint">( _____ = เลือกคำกริยาที่ถูกต้อง )</div>
+      <div class="options-grid" id="options-grid"></div>
+    </div>
+
+    <div class="explanation-card" id="explanation-card">
+      <div class="expl-header">
+        <div class="expl-verdict" id="expl-verdict"></div>
+        <div class="expl-tense-chip" id="expl-tense-chip"></div>
+      </div>
+
+      <div class="expl-section">
+        <div class="expl-section-title">🎯 เหตุผลที่ตอบข้อนี้</div>
+        <div class="expl-text" id="expl-why"></div>
+      </div>
+
+      <div class="expl-section">
+        <div class="expl-section-title">📖 กฎ Grammar & โครงสร้าง</div>
+        <div class="expl-text" id="expl-rule"></div>
+      </div>
+
+      <div class="expl-section">
+        <div class="expl-section-title">🔍 คำสัญญาณ (Signal Words)</div>
+        <div class="signal-tags" id="expl-signals"></div>
+      </div>
+
+      <div class="expl-section">
+        <div class="tip-box">
+          <div class="tip-label">💡 เทคนิค TOEIC</div>
+          <div class="tip-text" id="expl-tip"></div>
+        </div>
+      </div>
+
+      <div class="next-btn-wrap">
+        <button class="btn-primary" id="next-btn" onclick="nextQuestion()">ข้อถัดไป →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ RESULT SCREEN ═══════════ -->
+<div id="result-screen" class="screen">
+  <div class="brand" style="margin-bottom:0">
+    <div class="brand-icon">🏆</div>
+    <div><div class="brand-name">ผลการทำข้อสอบ</div></div>
+  </div>
+
+  <div class="result-score-ring">
+    <svg viewBox="0 0 180 180">
+      <defs>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#C9962A"/>
+          <stop offset="100%" style="stop-color:#F5D580"/>
+        </linearGradient>
+      </defs>
+      <circle class="ring-bg" cx="90" cy="90" r="80"/>
+      <circle class="ring-fill" id="ring-fill" cx="90" cy="90" r="80"/>
+    </svg>
+    <div class="ring-text">
+      <div class="ring-percent" id="ring-percent">0%</div>
+      <div class="ring-label">คะแนน</div>
+    </div>
+  </div>
+
+  <div class="result-title" id="result-title"></div>
+  <div class="result-msg" id="result-msg"></div>
+
+  <div class="result-breakdown" style="max-width:480px;width:100%">
+    <div class="breakdown-row"><span class="breakdown-label">ตอบถูก</span><span class="breakdown-val" id="res-correct" style="color:var(--green)"></span></div>
+    <div class="breakdown-row"><span class="breakdown-label">ตอบผิด</span><span class="breakdown-val" id="res-wrong" style="color:var(--red)"></span></div>
+    <div class="breakdown-row"><span class="breakdown-label">จำนวนข้อ</span><span class="breakdown-val">10</span></div>
+  </div>
+
+  <div class="result-btns">
+    <button class="btn-primary" onclick="startQuiz()">🔄 ทำรอบใหม่ (สุ่มใหม่)</button>
+    <button class="btn-secondary" onclick="goHome()">🏠 หน้าหลัก</button>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+//  ALL 100 QUESTIONS
+// ════════════════════════════════════════
+const questions = [
+
+// ─── SIMPLE PRESENT (1–8) ───
+{id:1,tense:"Simple Present",
+ question:"The marketing director _____ the quarterly report every Monday morning without fail.",
+ options:["review","reviews","reviewed","is reviewing"],correct:1,
+ why:"ข้อ B <strong>'reviews'</strong> ถูกต้อง เพราะประธาน 'The marketing director' เป็น Third Person Singular และ <strong>'every Monday morning'</strong> บ่งบอกถึงกิจวัตรประจำ (Habitual Action) ซึ่งใช้ Simple Present โดยเติม <strong>-s</strong> ที่กริยา",
+ rule:"<strong>Simple Present</strong> ใช้กับ: <br>1) กิจวัตรประจำ (Habits/Routines)<br>2) ความจริงทั่วไป (General Truths)<br>3) สภาพถาวร<br><br>โครงสร้าง: Subject + <strong>V1</strong> / V1+s/es (He/She/It)<br>ถ้าประธานเป็น He / She / It / ชื่อเดี่ยว → เติม <strong>-s/-es</strong> เสมอ",
+ signals:["every","always","usually","often","sometimes","rarely","never","every Monday"],
+ tip:"เห็น <strong>every___</strong> หรือ Adverb of Frequency (always, usually, often, rarely, never) ให้นึกถึง Simple Present ทันที! และเช็คประธานว่าเป็น He/She/It ไหม ถ้าใช่ → เติม -s/-es ที่กริยา"},
+
+{id:2,tense:"Simple Present",
+ question:"The new policy _____ that all employees submit their timesheets by Friday noon.",
+ options:["is requiring","requires","required","has required"],correct:1,
+ why:"ข้อ B <strong>'requires'</strong> ถูกต้อง 'The new policy' เป็นประธานเอกพจน์ กริยา require ในที่นี้แสดงถึงกฎหรือข้อบังคับที่มีผลถาวร (State/Rule) ไม่ใช่การกระทำที่กำลังเกิด จึงไม่ใช้ Continuous",
+ rule:"State Verbs (กริยาแสดงสภาวะ) เช่น require, specify, state, indicate, contain, belong, mean → <strong>ห้ามใช้ Continuous</strong> ใช้ Simple Present เสมอ",
+ signals:["policy states","policy requires","contract specifies","always","currently"],
+ tip:"ถ้าเห็น <strong>state verbs</strong> เช่น require, belong, contain, mean, indicate — ห้ามใส่ -ing เด็ดขาด! ใช้ Simple Present เท่านั้น"},
+
+{id:3,tense:"Simple Present",
+ question:"The consultant _____ three languages fluently, which makes her invaluable to the team.",
+ options:["is speaking","speaks","has spoken","spoke"],correct:1,
+ why:"ข้อ B <strong>'speaks'</strong> ถูกต้อง การพูดภาษาเป็น Ability/State ถาวร (ไม่ใช่กำลังพูดอยู่ตอนนี้) จึงใช้ Simple Present ไม่ใช้ Present Continuous",
+ rule:"กริยาที่แสดง <strong>ความสามารถ/สภาวะถาวร</strong> (speak, know, understand, believe, seem) → Simple Present ไม่ใช้ -ing แม้ว่าจะมีคำว่า 'fluently' ก็ตาม",
+ signals:["speaks three languages","knows","understands","believes"],
+ tip:"Ability Words เช่น 'speaks fluently', 'knows how to' → Simple Present เสมอ ไม่ว่าจะอธิบายยังไง"},
+
+{id:4,tense:"Simple Present",
+ question:"Every time the client _____ the product, sales increase significantly.",
+ options:["is endorsing","endorsed","endorses","will endorse"],correct:2,
+ why:"ข้อ C <strong>'endorses'</strong> ถูกต้อง <strong>'Every time'</strong> เป็น Conjunction ที่นำ Simple Present มาเสมอ แสดงถึง Pattern ที่เกิดซ้ำๆ ในปัจจุบัน",
+ rule:"ใน Adverb Clause ของเวลา หลัง <strong>Every time / When / Whenever + ประโยคปัจจุบัน</strong> ให้ใช้ Simple Present ในทั้งสองประโยค",
+ signals:["every time","whenever","when","each time"],
+ tip:"<strong>Every time / Whenever + V1</strong> → Simple Present ทั้งสองประโยค! อย่าหลงใส่ will หรือ -ing เลย"},
+
+{id:5,tense:"Simple Present",
+ question:"The factory _____ approximately 500 units per day under normal operating conditions.",
+ options:["is producing","produces","produced","will produce"],correct:1,
+ why:"ข้อ B <strong>'produces'</strong> ถูกต้อง 'per day' บ่งบอกถึงกำลังการผลิตปกติ (General Fact) ที่เป็นความจริงทั่วไปของโรงงาน ใช้ Simple Present",
+ rule:"ข้อเท็จจริงทั่วไปเกี่ยวกับสิ่งต่างๆ (ผลิตได้กี่ชิ้น, วิ่งได้เร็วแค่ไหน, ทนได้กี่องศา) → <strong>Simple Present</strong>",
+ signals:["per day","per hour","under normal conditions","generally","typically"],
+ tip:"เห็น <strong>per day / per hour / per week</strong> → นึกถึง General Fact → Simple Present ทันที"},
+
+{id:6,tense:"Simple Present",
+ question:"The CEO rarely _____ at company events due to her busy travel schedule.",
+ options:["appeared","has appeared","appears","is appearing"],correct:2,
+ why:"ข้อ C <strong>'appears'</strong> ถูกต้อง <strong>'rarely'</strong> เป็น Adverb of Frequency ที่ใช้กับ Simple Present เสมอ และประธาน The CEO เป็น Third Person Singular → เติม -s",
+ rule:"Adverbs of Frequency วางหน้ากริยา (หรือหลัง be): always > usually > often > sometimes > rarely > never → ทั้งหมดใช้กับ <strong>Simple Present</strong>",
+ signals:["rarely","seldom","hardly ever","almost never","usually","always","often"],
+ tip:"Rarely / Seldom / Hardly ever = Adverb of Frequency → Simple Present ทุกครั้ง! จำไว้ว่า rarely/seldom มีความหมายลบ (แทบไม่เคย)"},
+
+{id:7,tense:"Simple Present",
+ question:"According to the contract, the supplier _____ delivery within 30 days of receiving payment.",
+ options:["guarantees","is guaranteeing","guaranteed","has guaranteed"],correct:0,
+ why:"ข้อ A <strong>'guarantees'</strong> ถูกต้อง <strong>'According to the contract'</strong> บ่งบอกว่านี่คือข้อกำหนดในสัญญา (Contractual Obligation) ที่เป็นกฎถาวร ใช้ Simple Present",
+ rule:"ข้อสัญญา, กฎหมาย, คู่มือ (According to the contract/policy/manual) → <strong>Simple Present</strong> เพราะเป็น Permanent State/Rule",
+ signals:["according to the contract","as stated in","per the agreement","the policy states"],
+ tip:"<strong>According to the contract/policy</strong> → Simple Present เสมอ! ไม่ว่าสัญญาจะเซ็นมานานแค่ไหนก็ตาม"},
+
+{id:8,tense:"Simple Present",
+ question:"The new software _____ the entire inventory system within seconds, saving hours of manual work.",
+ options:["is scanning","scans","scanned","was scanning"],correct:1,
+ why:"ข้อ B <strong>'scans'</strong> ถูกต้อง ประโยคนี้อธิบาย Feature/ความสามารถของซอฟต์แวร์ (General Capability) ซึ่งเป็นความจริงทั่วไป ใช้ Simple Present",
+ rule:"การอธิบาย Feature / ความสามารถของผลิตภัณฑ์หรือระบบ → <strong>Simple Present</strong> เช่น This app tracks, The system monitors, The software detects",
+ signals:["within seconds","automatically","efficiently","the system","the software"],
+ tip:"ในข้อสอบ TOEIC ประโยคที่อธิบาย Feature ของระบบ/ซอฟต์แวร์ → Simple Present เกือบทุกครั้ง"},
+
+// ─── PRESENT CONTINUOUS (9–16) ───
+{id:9,tense:"Present Continuous",
+ question:"The board of directors _____ the merger proposal at this very moment.",
+ options:["discusses","has discussed","is discussing","discussed"],correct:2,
+ why:"ข้อ C <strong>'is discussing'</strong> ถูกต้อง <strong>'at this very moment'</strong> บ่งบอกชัดว่ากำลังเกิดขึ้น ณ ขณะนี้ ใช้ Present Continuous",
+ rule:"<strong>Present Continuous</strong>: Subject + <strong>is/am/are + V-ing</strong><br>ใช้กับ: 1) สิ่งที่กำลังเกิดขึ้นตอนนี้ 2) สถานการณ์ชั่วคราว 3) นัดหมายในอนาคตอันใกล้",
+ signals:["now","right now","at this moment","at this very moment","currently","at present","today"],
+ tip:"<strong>now / right now / at this moment / at this very moment</strong> → Present Continuous ทันที! เห็นคำเหล่านี้ให้ใส่ is/am/are + V-ing เลย"},
+
+{id:10,tense:"Present Continuous",
+ question:"We _____ our product line to include eco-friendly options next month.",
+ options:["expand","have expanded","are expanding","expanded"],correct:2,
+ why:"ข้อ C <strong>'are expanding'</strong> ถูกต้อง แม้จะมี 'next month' แต่ประโยคนี้พูดถึงแผนที่วางไว้แล้ว (Arranged Future Plan) ซึ่งใช้ Present Continuous ได้",
+ rule:"Present Continuous สำหรับ <strong>อนาคตที่วางแผนไว้แล้ว</strong> (Arranged Future): มักมีคำเวลาในอนาคต เช่น next month, tomorrow, this weekend ร่วมด้วย",
+ signals:["next month","this weekend","tomorrow","next week","soon (arranged)"],
+ tip:"Present Continuous + คำเวลาอนาคต = แผนที่จัดเตรียมไว้แล้ว ต่างจาก will (การตัดสินใจกะทันหัน) โดย 'are expanding next month' = มีการวางแผนล่วงหน้า"},
+
+{id:11,tense:"Present Continuous",
+ question:"The IT department _____ the server temporarily, so please save your work.",
+ options:["upgraded","upgrades","is upgrading","has upgraded"],correct:2,
+ why:"ข้อ C <strong>'is upgrading'</strong> ถูกต้อง <strong>'temporarily'</strong> บ่งบอกว่าเป็นสถานการณ์ชั่วคราวที่กำลังเกิดขึ้นอยู่ตอนนี้ ใช้ Present Continuous",
+ rule:"Present Continuous ใช้สำหรับ <strong>สถานการณ์ชั่วคราว</strong> (Temporary Situations) ที่กำลังเกิดขึ้นในช่วงเวลานี้ ต่างจาก Simple Present ที่เป็นถาวร",
+ signals:["temporarily","at the moment","for now","this week","currently","for the time being"],
+ tip:"<strong>temporarily / for now / for the time being</strong> → สัญญาณของ Present Continuous สถานการณ์ชั่วคราว ไม่ใช่กิจวัตรถาวร"},
+
+{id:12,tense:"Present Continuous",
+ question:"Consumer spending _____ at an alarming rate according to the latest economic data.",
+ options:["declines","is declining","has declined","declined"],correct:1,
+ why:"ข้อ B <strong>'is declining'</strong> ถูกต้อง 'according to the latest economic data' บ่งบอกถึง Trend ที่กำลังเกิดขึ้นอยู่ในปัจจุบัน (Current Trend) ใช้ Present Continuous",
+ rule:"Present Continuous ใช้แสดง <strong>แนวโน้ม/เทรนด์ปัจจุบัน</strong> (Current Trend): เศรษฐกิจ, ตลาด, พฤติกรรมผู้บริโภค เช่น prices are rising, demand is growing, the market is shifting",
+ signals:["is rising","is declining","is growing","is changing","increasingly","at an alarming rate","according to recent data"],
+ tip:"ในข้อสอบ TOEIC บทความเกี่ยวกับเศรษฐกิจ/ธุรกิจ มักมี Current Trends → Present Continuous เช่น 'Sales are increasing' หรือ 'Demand is declining'"},
+
+{id:13,tense:"Present Continuous",
+ question:"The legal team _____ the contract thoroughly before the deadline on Friday.",
+ options:["reviews","reviewed","is reviewing","has reviewed"],correct:2,
+ why:"ข้อ C <strong>'is reviewing'</strong> ถูกต้อง มีกรอบเวลาเฉพาะ (before Friday) และเป็นงานที่กำลังดำเนินอยู่ตอนนี้ในช่วงนี้ ใช้ Present Continuous",
+ rule:"Present Continuous ใช้แสดงงานหรือกิจกรรมที่ <strong>กำลังดำเนินอยู่ในช่วงเวลาปัจจุบัน</strong> แม้ไม่ได้ทำอยู่ในวินาทีนี้ก็ตาม",
+ signals:["before the deadline","this week","these days","currently working on","in progress"],
+ tip:"'before the deadline on Friday' = งานกำลังทำอยู่ในช่วงนี้ → Present Continuous เหมาะกว่า Simple Present ที่บอกแค่ว่า 'ทำเป็นประจำ'"},
+
+{id:14,tense:"Present Continuous",
+ question:"She _____ with the Tokyo office today, which is why her schedule is full.",
+ options:["has met","is meeting","meets","met"],correct:1,
+ why:"ข้อ B <strong>'is meeting'</strong> ถูกต้อง <strong>'today'</strong> + การอ้างถึงกำหนดการที่จัดไว้แล้ว (scheduled appointment) → Present Continuous แสดงนัดหมาย",
+ rule:"Present Continuous + <strong>today / tonight / this afternoon / tomorrow</strong> ที่เป็นนัดหมายที่จัดไว้ล่วงหน้า (Fixed Appointment): I'm meeting him today. She's flying to Tokyo tomorrow.",
+ signals:["today","tonight","this afternoon","this evening","tomorrow (fixed plan)","next week (arranged)"],
+ tip:"เห็น 'today' + มีบริบทของการนัดหมาย → ให้ลอง Present Continuous ก่อน เพราะแสดง Arranged Plan ได้ดีกว่า Simple Present"},
+
+{id:15,tense:"Present Continuous",
+ question:"The engineering team _____ a new prototype, and the results look promising.",
+ options:["developed","is developing","develops","will develop"],correct:1,
+ why:"ข้อ B <strong>'is developing'</strong> ถูกต้อง ประโยคนี้บรรยายโปรเจกต์ที่กำลังดำเนินอยู่ในปัจจุบัน (Ongoing Project) และ 'the results look promising' ยืนยันว่ากำลังเกิดขึ้นอยู่",
+ rule:"Present Continuous ใช้กับ <strong>โปรเจกต์หรืองานที่กำลังดำเนินอยู่</strong> (Ongoing Work/Project) ที่ยังไม่เสร็จสิ้น",
+ signals:["currently","right now","at the moment","is working on","is developing","ongoing","in progress"],
+ tip:"ประโยคที่มีสองส่วน 'กำลังทำ X และผลลัพธ์ Y' → Present Continuous สำหรับส่วนแรก เพราะมันยังดำเนินอยู่"},
+
+{id:16,tense:"Present Continuous",
+ question:"Our competitors _____ aggressively into our market share this quarter.",
+ options:["have cut","cut","are cutting","cuts"],correct:2,
+ why:"ข้อ C <strong>'are cutting'</strong> ถูกต้อง <strong>'this quarter'</strong> บ่งบอกถึงช่วงเวลาปัจจุบันที่กำลังเกิดขึ้น และ 'aggressively' เน้นว่าเป็น Trend ที่ต่อเนื่อง",
+ rule:"<strong>this quarter / this month / this year / these days</strong> + Present Continuous แสดงถึงสิ่งที่เกิดขึ้นอยู่ในช่วงเวลาปัจจุบัน ต่างจาก Simple Present ที่เป็นกิจวัตรถาวร",
+ signals:["this quarter","this month","this year","these days","lately","recently (ongoing)"],
+ tip:"<strong>this quarter/month/year</strong> → Present Continuous! ต่างจาก 'every quarter' → Simple Present"},
+
+// ─── PRESENT PERFECT (17–26) ───
+{id:17,tense:"Present Perfect",
+ question:"The company _____ its annual revenue target for the third consecutive year.",
+ options:["exceeded","exceeds","has exceeded","is exceeding"],correct:2,
+ why:"ข้อ C <strong>'has exceeded'</strong> ถูกต้อง 'for the third consecutive year' เชื่อมช่วงเวลาอดีตมาถึงปัจจุบัน และผลยังมีความสำคัญในปัจจุบัน ใช้ Present Perfect",
+ rule:"<strong>Present Perfect</strong>: Subject + <strong>have/has + V3</strong><br>ใช้กับ: 1) ประสบการณ์ชีวิต (ever/never) 2) ผลลัพธ์ที่ยังมีผลอยู่ 3) การกระทำที่เพิ่งเสร็จ (just/already/yet) 4) ช่วงเวลาต่อเนื่อง (since/for)",
+ signals:["for the third time","consecutive","since","for (duration)","ever","never","just","already","yet","recently","lately"],
+ tip:"<strong>for the third/second time</strong> หรือ Consecutive (ต่อเนื่อง) → Present Perfect! เพราะนับจากอดีตมาถึงปัจจุบัน"},
+
+{id:18,tense:"Present Perfect",
+ question:"She has never _____ such a complex negotiation on her own before.",
+ options:["handles","handled","been handling","to handle"],correct:1,
+ why:"ข้อ B <strong>'handled'</strong> ถูกต้อง โครงสร้าง has/have + <strong>never + V3</strong> = ประสบการณ์ที่ไม่เคยมีในชีวิต 'before' ยืนยันว่าพูดถึงชีวิตทั้งหมดจนถึงปัจจุบัน",
+ rule:"<strong>has/have never + V3</strong> = never ใช้ขยาย Present Perfect แสดงว่าไม่เคยมีประสบการณ์นั้นเลยในชีวิต: She has never handled / He has never visited / They have never faced",
+ signals:["never","ever","before","in her life","in his career","so far"],
+ tip:"<strong>never + V3</strong> หลัง has/have → แสดงประสบการณ์ชีวิต! อย่าลืม 'before' ที่ท้ายประโยคเป็น clue เพิ่มอีกชั้น"},
+
+{id:19,tense:"Present Perfect",
+ question:"The research team _____ promising results, but they need more data to draw conclusions.",
+ options:["was obtaining","obtained","has obtained","obtains"],correct:2,
+ why:"ข้อ C <strong>'has obtained'</strong> ถูกต้อง ผลการวิจัยที่ได้มายังมีความสำคัญในปัจจุบัน (ยังต้องการข้อมูลเพิ่ม) เชื่อมอดีตกับปัจจุบัน → Present Perfect",
+ rule:"Present Perfect ใช้เมื่อผลจากอดีตยังมี <strong>ความเกี่ยวข้องกับปัจจุบัน</strong> (Current Relevance): 'has obtained results' → ผลเหล่านั้นยังอยู่/ยังต้องใช้",
+ signals:["but (something still needs to happen)","so","therefore","which means","and now"],
+ tip:"ถ้าส่วนหลังของประโยคพูดถึงสถานการณ์ปัจจุบัน → ส่วนแรกอาจเป็น Present Perfect! เช่น 'has obtained results, but needs more data'"},
+
+{id:20,tense:"Present Perfect",
+ question:"The director _____ the budget proposal three times, yet the committee still wants revisions.",
+ options:["submitted","has submitted","submits","is submitting"],correct:1,
+ why:"ข้อ B <strong>'has submitted'</strong> ถูกต้อง <strong>'three times'</strong> นับจำนวนครั้งสะสมถึงปัจจุบัน และ <strong>'yet'</strong> ยืนยันว่ายังมีผลถึงตอนนี้ → Present Perfect",
+ rule:"คำนับครั้ง (once, twice, three times, several times, numerous times) ร่วมกับ Present Perfect = จำนวนครั้งสะสมจนถึงปัจจุบัน: has submitted three times",
+ signals:["once","twice","three times","several times","many times","numerous times","yet","still"],
+ tip:"<strong>จำนวนครั้ง + yet/still</strong> → Present Perfect เสมอ! 'yet' แปลว่า 'แต่ยังไม่สำเร็จ' ใช้กับ Present Perfect เท่านั้น"},
+
+{id:21,tense:"Present Perfect",
+ question:"Investment in the region _____ dramatically since the new trade agreement was signed.",
+ options:["increases","increased","has increased","is increasing"],correct:2,
+ why:"ข้อ C <strong>'has increased'</strong> ถูกต้อง <strong>'since + Past Simple'</strong> คือสูตรทองของ Present Perfect ใช้บอกว่าตั้งแต่จุดนั้นในอดีต (since the agreement was signed) มาถึงตอนนี้",
+ rule:"<strong>since + จุดเวลาอดีต</strong> = Present Perfect เสมอ!<br>- since 2010<br>- since she joined<br>- since the policy was introduced<br>- since last year",
+ signals:["since 2010","since last year","since she joined","since the agreement","since the policy"],
+ tip:"<strong>SINCE</strong> = สัญญาณทองของ Present Perfect! ถ้าเห็น 'since' ให้ใส่ has/have + V3 เลย ไม่ต้องคิดมาก"},
+
+{id:22,tense:"Present Perfect",
+ question:"The client has already _____ to the new terms, so we can proceed with the project.",
+ options:["agreeing","agree","agreed","been agreed"],correct:2,
+ why:"ข้อ C <strong>'agreed'</strong> ถูกต้อง โครงสร้าง has + <strong>already + V3</strong> = เพิ่งเสร็จสิ้นไปแล้วก่อนหน้านี้ และ 'so we can proceed' ยืนยันว่ามีผลต่อปัจจุบัน",
+ rule:"<strong>already</strong> ใช้ใน Positive Sentences ของ Present Perfect: has/have + <strong>already</strong> + V3<br>วาง already ระหว่าง have/has กับ V3",
+ signals:["already","just","yet (negative/question)","recently","lately"],
+ tip:"<strong>already</strong> → has/have + already + V3 (Positive). <strong>yet</strong> → has/have not + V3 + yet (Negative) หรือ Have/Has + Subject + V3 + yet? (Question)"},
+
+{id:23,tense:"Present Perfect",
+ question:"I _____ this vendor for over five years and have never had a single complaint.",
+ options:["used","am using","have used","was using"],correct:2,
+ why:"ข้อ C <strong>'have used'</strong> ถูกต้อง <strong>'for over five years'</strong> บ่งบอกช่วงเวลาต่อเนื่องจากอดีตมาถึงปัจจุบัน และยังใช้อยู่ ร่วมกับ 'have never had' ยืนยัน Present Perfect",
+ rule:"<strong>for + ระยะเวลา</strong> = Present Perfect (ถ้ายังต่อเนื่องถึงปัจจุบัน)<br>- for five years, for months, for a long time, for decades<br>ต่างจาก 'for five years ago' ซึ่งไม่มีอยู่จริง (ผิด Grammar)",
+ signals:["for five years","for months","for a long time","for decades","for the past year"],
+ tip:"<strong>FOR + ระยะเวลา</strong> ที่ยังต่อเนื่องถึงปัจจุบัน → Present Perfect. แต่ถ้ามีเวลาอดีตชัดเจนเช่น 'in 2019' → Simple Past"},
+
+{id:24,tense:"Present Perfect",
+ question:"The safety inspector _____ three violations that must be corrected before reopening.",
+ options:["was identifying","has identified","identifies","had identified"],correct:1,
+ why:"ข้อ B <strong>'has identified'</strong> ถูกต้อง การตรวจพบข้อบกพร่อง 'สามอย่าง' เป็นผลลัพธ์ล่าสุดที่ยังมีผลกระทบต่อปัจจุบัน (must be corrected) → Present Perfect",
+ rule:"Present Perfect ใช้เมื่อมี <strong>ผลลัพธ์ที่ส่งผลต่อปัจจุบัน</strong>: 'has identified violations' → those violations still need fixing now",
+ signals:["must","should (as result)","so","therefore","which means we need to","that need to be"],
+ tip:"ดูส่วนหลังของประโยค: ถ้าพูดถึงสิ่งที่ต้องทำ/ต้องแก้ไขตอนนี้ → ส่วนแรกมักเป็น Present Perfect"},
+
+{id:25,tense:"Present Perfect",
+ question:"The market has become significantly more volatile _____ the regulatory changes took effect.",
+ options:["when","before","since","after"],correct:2,
+ why:"ข้อ C <strong>'since'</strong> ถูกต้อง โครงสร้าง Present Perfect + <strong>'since'</strong> + Past Simple = นับตั้งแต่จุดนั้นมาถึงตอนนี้",
+ rule:"คู่ทองของ Grammar: <strong>Present Perfect + since + Past Simple</strong><br>The market has become volatile since the changes took effect.<br>Prices have risen since the company merged.",
+ signals:["since","ever since","from the time","from the moment"],
+ tip:"สูตรทอง: <strong>has/have + V3 + since + V2 (past simple)</strong> ถ้าเห็นสองกริยาในประโยค + since → ต้องเป็น Present Perfect ตามด้วย Past Simple"},
+
+{id:26,tense:"Present Perfect",
+ question:"None of the applicants _____ the minimum qualifications outlined in the job posting.",
+ options:["met","is meeting","has met","meets"],correct:2,
+ why:"ข้อ C <strong>'has met'</strong> ถูกต้อง <strong>'None of the applicants'</strong> เป็นประธานเอกพจน์ (None = no one) และประโยคนี้ประเมินผลการสมัครที่เกิดขึ้นและมีผลถึงปัจจุบัน",
+ rule:"<strong>None of + Noun</strong> → ถือเป็น Singular → ใช้ has (ไม่ใช่ have). Present Perfect ใช้ประเมินผลที่มีความหมายต่อปัจจุบัน (ยังหาคนที่เหมาะสมไม่ได้)",
+ signals:["none of","no one has","nobody has","not any of"],
+ tip:"<strong>None of the + noun</strong> ใน TOEIC → Singular → ใช้ has ไม่ใช่ have! เป็น trap ที่ออกบ่อยมาก"},
+
+// ─── PRESENT PERFECT CONTINUOUS (27–34) ───
+{id:27,tense:"Present Perfect Continuous",
+ question:"The engineers _____ on this technical problem for six hours without finding a solution.",
+ options:["worked","have been working","are working","had worked"],correct:1,
+ why:"ข้อ B <strong>'have been working'</strong> ถูกต้อง <strong>'for six hours'</strong> + ยังไม่เสร็จ (without finding) → Present Perfect Continuous เน้นว่ากิจกรรมดำเนินต่อเนื่องมายาวนาน",
+ rule:"<strong>Present Perfect Continuous</strong>: have/has + <strong>been + V-ing</strong><br>ใช้เมื่อ: กิจกรรมเริ่มในอดีต ดำเนินต่อเนื่องมาถึงปัจจุบัน และยังอาจไม่เสร็จ<br>เน้น <strong>ระยะเวลา + ความต่อเนื่อง</strong>",
+ signals:["for (duration)","since","all morning","all day","all week","how long","still not finished"],
+ tip:"<strong>for + ระยะเวลานาน + ยังไม่เสร็จ</strong> → Present Perfect Continuous! ต่างจาก Present Perfect ธรรมดาที่เน้นผลลัพธ์ว่าเสร็จแล้ว"},
+
+{id:28,tense:"Present Perfect Continuous",
+ question:"The sales figures _____ steadily for the past three quarters, which concerns management.",
+ options:["declined","have been declining","are declining","had declined"],correct:1,
+ why:"ข้อ B <strong>'have been declining'</strong> ถูกต้อง <strong>'for the past three quarters'</strong> = ระยะเวลาต่อเนื่องมาถึงปัจจุบัน + 'which concerns management' ยืนยันว่ายังส่งผลอยู่",
+ rule:"<strong>for the past + ระยะเวลา</strong> = Present Perfect Continuous เสมอ! เน้นว่าแนวโน้มนั้นดำเนินมาต่อเนื่องและยังส่งผลถึงตอนนี้",
+ signals:["for the past month","for the past year","for the past three quarters","over the past decade"],
+ tip:"<strong>for the past + ระยะเวลา</strong> → Present Perfect Continuous! คำว่า 'past' ตรงนี้หมายถึง 'ที่ผ่านมา' ไม่ใช่ Simple Past"},
+
+{id:29,tense:"Present Perfect Continuous",
+ question:"She _____ extra hours lately to prepare for the board presentation next week.",
+ options:["works","worked","has been working","had worked"],correct:2,
+ why:"ข้อ C <strong>'has been working'</strong> ถูกต้อง <strong>'lately'</strong> = ช่วงไม่นานมานี้ที่เพิ่งผ่านมา และเป็นกิจกรรมที่ยังดำเนินอยู่ → Present Perfect Continuous",
+ rule:"<strong>lately / recently</strong> ใช้ได้กับทั้ง Present Perfect และ Present Perfect Continuous<br>- มีผลลัพธ์ชัดเจน → Present Perfect (has completed)<br>- เน้นกิจกรรมต่อเนื่อง → Present Perfect Continuous (has been working)",
+ signals:["lately","recently (ongoing)","these days","of late","in recent weeks"],
+ tip:"<strong>lately</strong> + กิจกรรมที่ยังทำอยู่ → Present Perfect Continuous. ถ้าบอกผลสำเร็จ → Present Perfect ธรรมดา"},
+
+{id:30,tense:"Present Perfect Continuous",
+ question:"How long _____ you _____ for the position to be filled?",
+ options:["do / wait","have / been waiting","did / wait","are / waiting"],correct:1,
+ why:"ข้อ B <strong>'have been waiting'</strong> ถูกต้อง <strong>'How long'</strong> + Present Perfect Continuous = ถามระยะเวลาที่ดำเนินมาต่อเนื่อง คำถามนี้สมบูรณ์เป็น 'How long have you been waiting?'",
+ rule:"<strong>How long have/has + Subject + been + V-ing?</strong> = รูปคำถามมาตรฐานของ Present Perfect Continuous ใช้ถามระยะเวลาที่ยังดำเนินอยู่",
+ signals:["How long have you been...?","How long has she been...?","since when have they been...?"],
+ tip:"<strong>How long + have/has + been + V-ing</strong> = สูตรคำถาม Present Perfect Continuous ที่ออก TOEIC บ่อยมาก จำสูตรนี้ให้ขึ้นใจ!"},
+
+{id:31,tense:"Present Perfect Continuous",
+ question:"The construction crew _____ the bridge infrastructure since early January.",
+ options:["has been reinforcing","reinforces","was reinforcing","reinforced"],correct:0,
+ why:"ข้อ A <strong>'has been reinforcing'</strong> ถูกต้อง <strong>'since early January'</strong> = จุดเริ่มต้นในอดีตมาถึงปัจจุบัน + งานยังดำเนินอยู่ → Present Perfect Continuous",
+ rule:"<strong>since + จุดเวลา</strong> ร่วมกับ Present Perfect Continuous = งานที่เริ่มตั้งแต่จุดนั้นและยังทำต่อเนื่องอยู่<br>since January / since 2022 / since she started",
+ signals:["since January","since 2020","since she started","since the project began","since early"],
+ tip:"<strong>since + specific time</strong> → ทั้ง Present Perfect (V3) และ Present Perfect Continuous (been+Ving) ได้ แต่ถ้าเน้นกิจกรรมกำลังดำเนินอยู่ → ใช้ Continuous"},
+
+{id:32,tense:"Present Perfect Continuous",
+ question:"The HR department _____ complaints about the new scheduling system all week.",
+ options:["received","is receiving","has been receiving","receives"],correct:2,
+ why:"ข้อ C <strong>'has been receiving'</strong> ถูกต้อง <strong>'all week'</strong> = ตลอดทั้งสัปดาห์นี้ต่อเนื่องมา → Present Perfect Continuous เน้นความต่อเนื่องยาวนาน",
+ rule:"<strong>all + ระยะเวลา</strong> (all day, all week, all morning, all year) = สัญญาณของ Present Perfect Continuous เน้นว่าทำตลอดช่วงนั้นมาจนถึงตอนนี้",
+ signals:["all day","all week","all morning","all month","all year","the whole day","throughout the week"],
+ tip:"<strong>all day / all week / all morning</strong> → Present Perfect Continuous เกือบทุกครั้ง! เน้นความต่อเนื่องโดยไม่หยุด"},
+
+{id:33,tense:"Present Perfect Continuous",
+ question:"The research indicates that global temperatures _____ at an unprecedented rate.",
+ options:["have been rising","rise","rose","were rising"],correct:0,
+ why:"ข้อ A <strong>'have been rising'</strong> ถูกต้อง 'at an unprecedented rate' บ่งบอกถึงกระบวนการที่ดำเนินต่อเนื่องมายาวนานและยังไม่หยุด + 'indicates' (ปัจจุบัน) ยืนยันว่ายังมีผล",
+ rule:"ข้อเท็จจริงทางวิทยาศาสตร์หรือสิ่งแวดล้อมที่มีการเปลี่ยนแปลงต่อเนื่องมานาน → <strong>Present Perfect Continuous</strong> เน้น ongoing process",
+ signals:["at an unprecedented rate","continuously","over the years","ongoing","long-term trend"],
+ tip:"Climate/Science context: อุณหภูมิโลกสูงขึ้น/ป่าไม้ลดลง → มักใช้ Present Perfect Continuous เพราะเป็นกระบวนการต่อเนื่องยาวนาน"},
+
+{id:34,tense:"Present Perfect Continuous",
+ question:"Mr. Chen _____ the quarterly analysis since this morning, and he still isn't finished.",
+ options:["compiles","was compiling","has been compiling","compiled"],correct:2,
+ why:"ข้อ C <strong>'has been compiling'</strong> ถูกต้อง <strong>'since this morning'</strong> + <strong>'still isn't finished'</strong> = สองสัญญาณชัดว่ากิจกรรมดำเนินต่อเนื่องมาตั้งแต่เช้าและยังไม่เสร็จ",
+ rule:"สูตรยืนยัน: <strong>since this morning/noon/last night + still not finished</strong> = Present Perfect Continuous ที่ชัดที่สุด",
+ signals:["since this morning","since noon","since yesterday","still isn't finished","still going on","not done yet"],
+ tip:"<strong>since + เวลาเช้า/บ่าย + still not finished</strong> = Present Perfect Continuous ชัวร์ 100%! สองสัญญาณนี้มาด้วยกันเสมอ"},
+
+// ─── SIMPLE PAST (35–42) ───
+{id:35,tense:"Simple Past",
+ question:"The company _____ its headquarters from London to Singapore in 2019.",
+ options:["relocates","has relocated","relocated","was relocating"],correct:2,
+ why:"ข้อ C <strong>'relocated'</strong> ถูกต้อง <strong>'in 2019'</strong> = เวลาอดีตที่ระบุชัดเจน → Simple Past เสมอ ไม่ใช้ Present Perfect",
+ rule:"<strong>Simple Past</strong>: Subject + <strong>V2 (Past Form)</strong><br>ใช้เมื่อมีเวลาอดีตชัดเจน: in 2019, last year, yesterday, three years ago, in March",
+ signals:["in 2019","last year","yesterday","last week","in January","three days ago","in the past","formerly"],
+ tip:"เวลาอดีตที่ระบุชัดเจน (in 2019, last week, yesterday) → <strong>Simple Past</strong> ห้ามใช้ Present Perfect! เพราะ Present Perfect ไม่ระบุเวลาอดีตชัดเจน"},
+
+{id:36,tense:"Simple Past",
+ question:"The client _____ the final invoice last Friday without any questions.",
+ options:["approves","approved","has approved","is approving"],correct:1,
+ why:"ข้อ B <strong>'approved'</strong> ถูกต้อง <strong>'last Friday'</strong> = เวลาในอดีตที่ระบุชัด → Simple Past",
+ rule:"<strong>last + ช่วงเวลา</strong> (last Friday, last Monday, last week, last month, last year) = Simple Past เสมอ ไม่มีข้อยกเว้น",
+ signals:["last Friday","last week","last month","last year","last Monday","last quarter"],
+ tip:"<strong>last ___</strong> = Simple Past ทุกครั้ง! จำกฎเดียวนี้ก็ทำข้อสอบได้เยอะมาก"},
+
+{id:37,tense:"Simple Past",
+ question:"When the CEO _____ into the boardroom, the presentation had already started.",
+ options:["walks","has walked","walked","was walking"],correct:2,
+ why:"ข้อ C <strong>'walked'</strong> ถูกต้อง ในประโยค 'When + Simple Past, Past Perfect' → การกระทำที่เกิดขึ้นพร้อมกันหรือหลังจาก = Simple Past, การที่เกิดก่อน = Past Perfect ('had already started')",
+ rule:"<strong>When + Simple Past + Past Perfect</strong> = เหตุการณ์สองอย่างในอดีต อันที่เกิดก่อน = Past Perfect, อันที่เกิดหลัง/พร้อมกัน = Simple Past",
+ signals:["when + simple past","after + simple past","as soon as"],
+ tip:"<strong>When + V2 (Simple Past)</strong> ใช้บอกจุดเวลาอดีต → กริยาหลักอีกอันอาจเป็น Past Perfect ถ้าเกิดก่อน"},
+
+{id:38,tense:"Simple Past",
+ question:"The original factory _____ a total of 200 employees before it shut down in 2015.",
+ options:["employs","was employing","employed","has employed"],correct:2,
+ why:"ข้อ C <strong>'employed'</strong> ถูกต้อง 'before it shut down in 2015' ระบุว่าเป็นเหตุการณ์/สถานการณ์ในอดีตที่จบสิ้นไปแล้ว ใช้ Simple Past",
+ rule:"เมื่อประโยคพูดถึงสถานการณ์ในอดีตที่จบสิ้นแล้ว (Factory closed / Company merged / Building demolished) → <strong>Simple Past</strong>",
+ signals:["before it shut down","before it closed","in (year)","when it was operating","formerly"],
+ tip:"'before + จุดจบในอดีต' ที่ไม่มีความสำคัญต่อปัจจุบัน → Simple Past (ไม่ใช่ Past Perfect เสมอไป เพราะ Simple Past ก็ได้)"},
+
+{id:39,tense:"Simple Past",
+ question:"The new regulation _____ into effect three years ago and transformed the entire industry.",
+ options:["comes","came","has come","was coming"],correct:1,
+ why:"ข้อ B <strong>'came'</strong> ถูกต้อง <strong>'three years ago'</strong> = เวลาอดีตชัดเจน → Simple Past",
+ rule:"<strong>___ ago</strong> (three years ago, two months ago, a week ago) = Simple Past เสมอ ไม่เคยใช้ Present Perfect กับ 'ago'",
+ signals:["three years ago","months ago","years ago","a week ago","long ago","days ago"],
+ tip:"<strong>ago</strong> = Simple Past เสมอ! ข้อนี้ออกบ่อยมากใน TOEIC ห้ามใช้ has/have กับ ago เด็ดขาด"},
+
+{id:40,tense:"Simple Past",
+ question:"She _____ her MBA from Wharton and immediately joined the family business.",
+ options:["completes","has completed","was completing","completed"],correct:3,
+ why:"ข้อ D <strong>'completed'</strong> ถูกต้อง ประโยคเล่าลำดับเหตุการณ์ในอดีต (completed → joined) ทั้งสองกริยาเป็น Simple Past เพราะเกิดต่อกันในอดีต",
+ rule:"เมื่อเล่าเหตุการณ์อดีตตามลำดับ (Narrative Sequence) → ใช้ <strong>Simple Past</strong> ตลอด: she graduated, joined, became, led...",
+ signals:["and then","immediately","subsequently","after that","next","and","then"],
+ tip:"เล่าเรื่องในอดีตแบบ 'ทำ A แล้ว B' → Simple Past ทั้งคู่! ไม่จำเป็นต้องใช้ Past Perfect ถ้าลำดับชัดเจนจากบริบท"},
+
+{id:41,tense:"Simple Past",
+ question:"The original contract _____ that all disputes be settled by international arbitration.",
+ options:["specified","has specified","specifies","was specifying"],correct:0,
+ why:"ข้อ A <strong>'specified'</strong> ถูกต้อง 'original contract' หมายถึงสัญญาเดิมที่อาจไม่มีผลแล้ว + ไม่มีการเชื่อมกับปัจจุบัน → Simple Past",
+ rule:"สัญญา/นโยบาย/กฎที่ใช้ในอดีตและอาจไม่มีผลแล้ว → <strong>Simple Past</strong> ต่างจาก 'The current contract specifies' ที่ยังมีผล → Simple Present",
+ signals:["original","former","previous","old","the contract that expired","in the previous version"],
+ tip:"'Original / Former / Previous' + สัญญา/นโยบาย → Simple Past (หมดอายุแล้ว) vs 'Current / New' → Simple Present (ยังมีผล)"},
+
+{id:42,tense:"Simple Past",
+ question:"The team _____ its fourth consecutive monthly target last December.",
+ options:["exceeds","exceeded","has exceeded","was exceeding"],correct:1,
+ why:"ข้อ B <strong>'exceeded'</strong> ถูกต้อง <strong>'last December'</strong> = เวลาอดีตชัด → Simple Past แม้จะมีคำว่า 'consecutive' ก็ตาม",
+ rule:"เวลาอดีตชัดเจน (last December, in Q3, on Monday) → <strong>Simple Past</strong> เสมอ แม้บริบทดูเหมือน Present Perfect ก็ต้องใช้ Simple Past",
+ signals:["last December","in Q4","on that date","that month","at that time","back then"],
+ tip:"อย่าหลงกลกับ 'consecutive' (ต่อเนื่อง) — ถ้ามี 'last December' ก็ยังเป็น Simple Past! เวลาอดีตชัดเจน = Simple Past เสมอ"},
+
+// ─── PAST CONTINUOUS (43–50) ───
+{id:43,tense:"Past Continuous",
+ question:"While the IT team _____ the server, someone accidentally deleted the backup files.",
+ options:["upgraded","was upgrading","had upgraded","has upgraded"],correct:1,
+ why:"ข้อ B <strong>'was upgrading'</strong> ถูกต้อง <strong>'While + Past Continuous'</strong> แสดงกิจกรรมที่กำลังดำเนินอยู่ แล้วถูกขัดจังหวะโดย Simple Past ('deleted')",
+ rule:"<strong>Past Continuous</strong>: Subject + <strong>was/were + V-ing</strong><br>รูปแบบคู่: <strong>While + was/were + V-ing, Simple Past</strong> = กำลังทำ X อยู่ แล้วมี Y เกิดขึ้นขัดจังหวะ",
+ signals:["while","when (interruption)","at that moment","at that time","as"],
+ tip:"<strong>While + was/were + V-ing</strong> = กิจกรรมที่กำลังเกิด + <strong>Simple Past</strong> = สิ่งที่ขัดจังหวะ สองอย่างนี้มาคู่กันเสมอ!"},
+
+{id:44,tense:"Past Continuous",
+ question:"The delegates _____ the trade agreement when the power outage disrupted the session.",
+ options:["have reviewed","reviewed","were reviewing","had reviewed"],correct:2,
+ why:"ข้อ C <strong>'were reviewing'</strong> ถูกต้อง 'when the power outage disrupted' = Simple Past ขัดจังหวะ → กิจกรรมที่กำลังเกิดก่อนหน้า = Past Continuous",
+ rule:"<strong>when + Simple Past (interruption)</strong> → กิจกรรมหลักที่ถูกขัดจังหวะ = <strong>Past Continuous</strong><br>The delegates were reviewing WHEN the outage disrupted.",
+ signals:["when (interruption)","suddenly","unexpectedly","without warning","out of the blue"],
+ tip:"<strong>When + V2 (กระทันหัน)</strong> เช่น 'when the phone rang', 'when he arrived' → กิจกรรมที่ถูกขัดจังหวะ = Past Continuous"},
+
+{id:45,tense:"Past Continuous",
+ question:"At 9 PM last night, the senior analyst _____ the financial report for the morning briefing.",
+ options:["prepared","was preparing","had prepared","prepares"],correct:1,
+ why:"ข้อ B <strong>'was preparing'</strong> ถูกต้อง <strong>'At 9 PM last night'</strong> = จุดเวลาเฉพาะในอดีต + กิจกรรมที่กำลังดำเนินอยู่ ณ เวลานั้น → Past Continuous",
+ rule:"<strong>At [specific time] last night/yesterday/on Monday</strong> + กิจกรรมที่กำลังทำ → <strong>Past Continuous</strong><br>At 8 AM, she was presenting. At noon, he was eating.",
+ signals:["at 9 PM last night","at this time yesterday","at that moment","at noon on Monday","at the exact moment"],
+ tip:"<strong>At + เวลาเฉพาะ + last night/yesterday</strong> → Past Continuous เสมอ! เหมือน 'at this time yesterday = was doing'"},
+
+{id:46,tense:"Past Continuous",
+ question:"The customer service team _____ an unusually high volume of calls when the system crashed.",
+ options:["was handling","handled","has handled","had handled"],correct:0,
+ why:"ข้อ A <strong>'was handling'</strong> ถูกต้อง 'when the system crashed' = Simple Past ขัดจังหวะ → กิจกรรมที่กำลังดำเนินอยู่ก่อน = Past Continuous",
+ rule:"สูตร: <strong>Past Continuous + when + Simple Past</strong> = กำลังทำ X อยู่ เมื่อ Y เกิดขึ้น<br>The team was handling calls WHEN the system crashed.",
+ signals:["when the system crashed","when the alarm went off","when she entered","when he called"],
+ tip:"จำสูตรคู่: <strong>was/were + V-ing WHEN V2</strong> ← Past Continuous + When + Simple Past นี่คือ Pattern ที่ออกใน TOEIC บ่อยที่สุดของ Past Continuous"},
+
+{id:47,tense:"Past Continuous",
+ question:"While the shareholders _____ management's proposal, word leaked to the press.",
+ options:["debated","were debating","had debated","have debated"],correct:1,
+ why:"ข้อ B <strong>'were debating'</strong> ถูกต้อง <strong>'While'</strong> นำหน้า Past Continuous เสมอ แสดงกิจกรรมเบื้องหลังที่เกิดพร้อมกับ/ก่อน Simple Past ('leaked')",
+ rule:"<strong>While + Past Continuous</strong> แสดงสองสิ่งที่เกิดพร้อมกัน:<br>While A was doing X, B was doing Y. หรือ While A was doing X, B did Y.",
+ signals:["while","as","simultaneously","at the same time","meanwhile (past)"],
+ tip:"<strong>While</strong> = สัญญาณหลักของ Past Continuous! เห็น 'while' แล้วมีบริบทอดีต → ใส่ was/were + V-ing ได้เลย"},
+
+{id:48,tense:"Past Continuous",
+ question:"The project manager _____ a progress meeting when she received the urgent email from headquarters.",
+ options:["was conducting","has conducted","conducted","had conducted"],correct:0,
+ why:"ข้อ A <strong>'was conducting'</strong> ถูกต้อง 'when she received the urgent email' = Simple Past ขัดจังหวะ → กิจกรรมที่กำลังดำเนินอยู่ = Past Continuous",
+ rule:"ในประโยคนี้ 'received' (Simple Past) ขัดจังหวะ 'was conducting' (Past Continuous) = Pattern มาตรฐานของ Past Continuous",
+ signals:["when she received","when he called","when the alarm rang","when they announced"],
+ tip:"ถ้าเห็น 'when + V2' ที่เป็นการขัดจังหวะกะทันหัน → กริยาหลักใน Main Clause เป็น Past Continuous"},
+
+{id:49,tense:"Past Continuous",
+ question:"At the time of the audit, the accounting department _____ outdated spreadsheet software.",
+ options:["used","was using","had used","has used"],correct:1,
+ why:"ข้อ B <strong>'was using'</strong> ถูกต้อง <strong>'At the time of the audit'</strong> = จุดเวลาอ้างอิงในอดีต + กิจกรรมที่กำลังเกิดขึ้น ณ เวลานั้น → Past Continuous",
+ rule:"<strong>At the time of + noun</strong> = Past Continuous: At the time of the merger, At the time of the investigation, At the time of the review",
+ signals:["at the time of","at the time when","during the investigation","during the meeting","in the middle of"],
+ tip:"<strong>At the time of + เหตุการณ์</strong> → Past Continuous เสมอ! เพราะบอกว่ากำลังทำอะไรอยู่ ณ เวลานั้น"},
+
+{id:50,tense:"Past Continuous",
+ question:"The two executives _____ a private discussion when the junior staff member interrupted them.",
+ options:["have had","had","were having","had had"],correct:2,
+ why:"ข้อ C <strong>'were having'</strong> ถูกต้อง 'when the junior staff member interrupted' = Simple Past ขัดจังหวะ → Past Continuous. 'have' ในที่นี้เป็น Dynamic Verb (ทำกิจกรรม) จึงใช้ -ing ได้",
+ rule:"'Have' เป็น State Verb ที่ปกติห้ามใช้ -ing แต่เมื่อหมายถึง <strong>กิจกรรม</strong> เช่น have a meeting, have a discussion, have lunch → ใช้ -ing ได้: were having a meeting",
+ signals:["when...interrupted","when...disturbed","when...walked in","when...entered"],
+ tip:"'Have a meeting / Have a discussion / Have lunch' = Dynamic 'have' → ใช้ -ing ได้! were having a meeting ถูกต้อง"}
+];
+
+// ─── QUESTIONS 51–100 ───
+const questions2 = [
+
+// ─── PAST PERFECT (51–60) ───
+{id:51,tense:"Past Perfect",
+ question:"By the time the auditors arrived, the accounting team _____ all supporting documents.",
+ options:["prepares","was preparing","has prepared","had prepared"],correct:3,
+ why:"ข้อ D <strong>'had prepared'</strong> ถูกต้อง <strong>'By the time + Simple Past'</strong> = สูตรทองของ Past Perfect กิจกรรมที่เกิดก่อน = Past Perfect",
+ rule:"<strong>Past Perfect</strong>: Subject + <strong>had + V3</strong><br>สูตรหลัก: <strong>By the time + Simple Past, Past Perfect</strong><br>= เหตุการณ์ที่เกิดก่อน + เหตุการณ์ที่เกิดทีหลัง",
+ signals:["by the time","before","after","when (sequence)","already (in past)","by then","previously"],
+ tip:"<strong>By the time + V2</strong> → Past Perfect (had + V3) ก่อนเสมอ! นี่คือสูตรที่ออกบ่อยที่สุดของ Past Perfect ใน TOEIC"},
+
+{id:52,tense:"Past Perfect",
+ question:"The company _____ significant losses before it finally hired a crisis management firm.",
+ options:["suffered","was suffering","has suffered","had suffered"],correct:3,
+ why:"ข้อ D <strong>'had suffered'</strong> ถูกต้อง <strong>'before it hired'</strong> = มีสองเหตุการณ์อดีต อันที่เกิดก่อน (suffered losses) = Past Perfect, อันที่เกิดทีหลัง (hired) = Simple Past",
+ rule:"<strong>before + Simple Past</strong> = Past Perfect สำหรับสิ่งที่เกิดก่อน: had suffered... before hired.<br>สูตร: A had done X BEFORE B did Y.",
+ signals:["before + V2","after + V2","when + V2 (sequence)","already (past context)","previously","by then"],
+ tip:"<strong>Before + Simple Past</strong> ในบริบทอดีต → สิ่งที่เกิดก่อน = Past Perfect. จำสูตร: 'had done BEFORE did'"},
+
+{id:53,tense:"Past Perfect",
+ question:"When the board reviewed the proposal, the committee _____ already _____ a preliminary assessment.",
+ options:["is / conducting","has / conducted","had / conducted","was / conducting"],correct:2,
+ why:"ข้อ C <strong>'had conducted'</strong> ถูกต้อง 'When the board reviewed' = Simple Past (อดีต), 'already' ยืนยันว่าทำก่อนหน้านั้น → Past Perfect (had + already + V3)",
+ rule:"<strong>had + already + V3</strong> = เน้นว่าเสร็จไปแล้วก่อนเหตุการณ์อดีตอีกอัน<br>'already' ใน Past Perfect วางระหว่าง had กับ V3",
+ signals:["already (in past context)","previously","before that","by then","at that point"],
+ tip:"<strong>already</strong> ใน Past Context → had + already + V3 (Past Perfect). ต่างจาก Present Context → has/have + already + V3"},
+
+{id:54,tense:"Past Perfect",
+ question:"The merger negotiations _____ by the time the new CEO took office last March.",
+ options:["conclude","concluded","had concluded","have concluded"],correct:2,
+ why:"ข้อ C <strong>'had concluded'</strong> ถูกต้อง <strong>'By the time + Simple Past (took office)'</strong> → เหตุการณ์ที่เกิดก่อน = Past Perfect",
+ rule:"<strong>By the time + Simple Past</strong> = Past Perfect หน้า Comma:<br>The negotiations HAD CONCLUDED by the time the CEO TOOK office.",
+ signals:["by the time","by then","by last year","by that point","by the deadline (past)"],
+ tip:"<strong>By the time + V2 (past)</strong> = หน้าหรือหลัง Comma → Past Perfect เสมอ! ถ้าเป็น Future → Future Perfect"},
+
+{id:55,tense:"Past Perfect",
+ question:"She had never _____ to Japan before her business trip last year.",
+ options:["traveled","has traveled","been traveling","would travel"],correct:0,
+ why:"ข้อ A <strong>'traveled'</strong> ถูกต้อง โครงสร้าง <strong>had never + V3</strong> = ไม่เคยมีประสบการณ์นั้นก่อนถึงเวลาอดีตที่อ้างอิง 'before her business trip last year'",
+ rule:"<strong>had never + V3</strong> = ไม่เคยมีประสบการณ์นั้นมาก่อน (ณ จุดเวลาอดีต)<br>ต่างจาก has never + V3 = ไม่เคยมีประสบการณ์นั้นจนถึงปัจจุบัน",
+ signals:["had never","had not yet","before (past reference)","prior to that trip","previously"],
+ tip:"<strong>had never</strong> vs <strong>has never</strong>: had never = ณ จุดอดีตนั้น, has never = จนถึงตอนนี้ ดูจาก Reference Time ในประโยค"},
+
+{id:56,tense:"Past Perfect",
+ question:"The construction team discovered that someone _____ the blueprints without authorization.",
+ options:["modifies","was modifying","had modified","has modified"],correct:2,
+ why:"ข้อ C <strong>'had modified'</strong> ถูกต้อง 'discovered' = Simple Past (อดีต), การแก้ไขแบบพิมพ์เกิดขึ้นก่อนการค้นพบ → Past Perfect",
+ rule:"ใน Reported Speech หรือประโยค 'Subject + ค้นพบ/รู้ว่า + that-clause': กริยาใน that-clause ถอยหลังหนึ่งขั้น:<br>discover (Simple Past) → that-clause ใช้ Past Perfect",
+ signals:["discovered that","found that","realized that","learned that","noticed that","confirmed that"],
+ tip:"'discovered / found / realized / noticed that + clause' → กริยาใน that-clause ถอยหลัง: Simple Past → Past Perfect"},
+
+{id:57,tense:"Past Perfect",
+ question:"By the end of last year, the company _____ its debt by 40%.",
+ options:["reduces","has reduced","had reduced","was reducing"],correct:2,
+ why:"ข้อ C <strong>'had reduced'</strong> ถูกต้อง <strong>'By the end of last year'</strong> = จุดเวลาอดีต + ผลที่เสร็จก่อนถึงจุดนั้น → Past Perfect",
+ rule:"<strong>By the end of last year/month/quarter + Past Perfect</strong>:<br>By the end of last year, they had achieved...<br>By the close of business, he had signed...",
+ signals:["by the end of last year","by the close of","by the deadline (past)","by then","by that time"],
+ tip:"<strong>By + เวลาอดีต</strong> (by last year, by then, by that date) → Past Perfect ใช้แสดงว่าเสร็จก่อนถึงเวลานั้น"},
+
+{id:58,tense:"Past Perfect",
+ question:"The finance director confirmed that the budget _____ approved before the fiscal year ended.",
+ options:["was","has been","had been","is"],correct:2,
+ why:"ข้อ C <strong>'had been'</strong> ถูกต้อง Passive Voice ของ Past Perfect: <strong>had been + V3</strong> = had been approved. 'confirmed' = Simple Past, การอนุมัติเกิดก่อน → Past Perfect Passive",
+ rule:"<strong>Past Perfect Passive</strong>: had + been + V3<br>Active: They had approved → Passive: It had been approved<br>ใช้เมื่อต้องการ Passive ในบริบท Past Perfect",
+ signals:["had been approved","had been completed","had been reviewed","had been submitted","had been decided"],
+ tip:"<strong>had been + V3</strong> = Past Perfect Passive ซึ่งออกบ่อยใน TOEIC! ต่างจาก was + V3 = Simple Past Passive"},
+
+{id:59,tense:"Past Perfect",
+ question:"The client insisted that the team _____ the project scope before signing the contract.",
+ options:["misunderstood","had misunderstood","has misunderstood","was misunderstanding"],correct:1,
+ why:"ข้อ B <strong>'had misunderstood'</strong> ถูกต้อง 'insisted' = Simple Past, การเข้าใจผิดเกิดขึ้นก่อน → Past Perfect ใน that-clause",
+ rule:"กริยา Reporting ในอดีต (insisted, claimed, argued, believed, thought) + that-clause → กริยาใน that-clause ถอยขั้น:<br>Simple Past → Past Perfect",
+ signals:["insisted that","claimed that","argued that","believed that","thought that","maintained that"],
+ tip:"'insisted / claimed / argued + that' → that-clause ใช้ Past Perfect ถ้าเกิดก่อน! เป็น Backshift ที่ออกบ่อยใน TOEIC"},
+
+{id:60,tense:"Past Perfect",
+ question:"The new manager realized that his predecessor _____ the report with incorrect data.",
+ options:["submitted","had submitted","was submitting","has submitted"],correct:1,
+ why:"ข้อ B <strong>'had submitted'</strong> ถูกต้อง 'realized' (Simple Past) + การส่งรายงาน (เกิดก่อนที่จะรู้) → Past Perfect ใน that-clause",
+ rule:"'<strong>realized / discovered / found out</strong> that + Past Perfect' = รูปแบบมาตรฐานที่ออกบ่อยใน TOEIC:<br>He realized (that) something HAD HAPPENED before.",
+ signals:["realized that","discovered that","found out that","came to understand that","it turned out that"],
+ tip:"'realized / discovered + that' + Past Perfect = สูตรที่ออกบ่อยมาก ถ้าเห็น realized → ดูใน that-clause → มักเป็น Past Perfect"},
+
+// ─── PAST PERFECT CONTINUOUS (61–67) ───
+{id:61,tense:"Past Perfect Continuous",
+ question:"The team _____ on the proposal for two months before the client suddenly cancelled the project.",
+ options:["worked","was working","had been working","has been working"],correct:2,
+ why:"ข้อ C <strong>'had been working'</strong> ถูกต้อง <strong>'for two months'</strong> (ระยะเวลา) + <strong>'before'</strong> (ก่อนเหตุการณ์อดีต 'cancelled') → Past Perfect Continuous เน้นระยะเวลาต่อเนื่องก่อนเหตุการณ์อดีต",
+ rule:"<strong>Past Perfect Continuous</strong>: had + <strong>been + V-ing</strong><br>ใช้เมื่อ: กิจกรรมดำเนินต่อเนื่องสักระยะ แล้วหยุดเมื่อมีเหตุการณ์อดีตมาขัด<br>เน้น <strong>ระยะเวลาต่อเนื่องก่อนจุดอดีต</strong>",
+ signals:["for + duration + before","for months before","had been...when","had been...until"],
+ tip:"<strong>for + ระยะเวลา + before + Simple Past</strong> → Past Perfect Continuous! เน้นว่าทำมานานแค่ไหนก่อนที่บางอย่างจะหยุดมัน"},
+
+{id:62,tense:"Past Perfect Continuous",
+ question:"By the time the software update was released, the developers _____ the bugs for nearly a year.",
+ options:["were fixing","have been fixing","fixed","had been fixing"],correct:3,
+ why:"ข้อ D <strong>'had been fixing'</strong> ถูกต้อง <strong>'By the time + Simple Past'</strong> + ระยะเวลา 'for nearly a year' → Past Perfect Continuous เน้นกิจกรรมต่อเนื่องก่อนจุดนั้น",
+ rule:"<strong>By the time + Simple Past + for + ระยะเวลา</strong> → Past Perfect Continuous<br>= กิจกรรมที่ดำเนินมาเป็นเวลานานก่อนถึงจุดนั้น",
+ signals:["by the time + V2","for nearly a year","for months","for weeks","for such a long time"],
+ tip:"<strong>By the time</strong> + ระยะเวลา → Past Perfect Continuous! ต่างจาก Past Perfect ธรรมดาที่ไม่เน้นระยะเวลา"},
+
+{id:63,tense:"Past Perfect Continuous",
+ question:"She looked exhausted because she _____ back-to-back client calls all morning.",
+ options:["has had","had been having","was having","had"],correct:1,
+ why:"ข้อ B <strong>'had been having'</strong> ถูกต้อง 'looked exhausted' (ผลลัพธ์ที่เห็น) + 'because' (สาเหตุ) + กิจกรรมต่อเนื่อง 'all morning' → Past Perfect Continuous แสดงสาเหตุของผลที่เห็นในอดีต",
+ rule:"<strong>ผลที่เห็นในอดีต + because + had been + V-ing</strong><br>She looked tired BECAUSE she had been working all night.<br>He was out of breath BECAUSE he had been running.",
+ signals:["looked (adjective) because","seemed exhausted because","appeared stressed because","because she had been"],
+ tip:"ดู Pattern: <strong>ผลลัพธ์ที่เห็นในอดีต (looked/seemed/appeared) + because + had been + V-ing</strong> → Past Perfect Continuous แสดงสาเหตุ"},
+
+{id:64,tense:"Past Perfect Continuous",
+ question:"The factory _____ at reduced capacity for months before management decided to restructure.",
+ options:["has operated","was operating","had been operating","operated"],correct:2,
+ why:"ข้อ C <strong>'had been operating'</strong> ถูกต้อง <strong>'for months before + Simple Past'</strong> = กิจกรรมต่อเนื่องยาวนานก่อนการตัดสินใจ → Past Perfect Continuous",
+ rule:"'<strong>for months/years/weeks before + Simple Past</strong>' = Past Perfect Continuous แสดงว่าสถานการณ์ดำเนินมายาวนานก่อนที่จะมีการเปลี่ยนแปลง",
+ signals:["for months before","for years before","for weeks before","for a long time before","up until that point"],
+ tip:"<strong>for + ระยะเวลา + before + V2</strong> → Past Perfect Continuous เกือบทุกครั้ง! นี่คือสูตรที่จำได้เลย"},
+
+{id:65,tense:"Past Perfect Continuous",
+ question:"The lawyer _____ the case documents for hours when she finally found the crucial discrepancy.",
+ options:["was reviewing","had been reviewing","reviewed","has been reviewing"],correct:1,
+ why:"ข้อ B <strong>'had been reviewing'</strong> ถูกต้อง <strong>'for hours'</strong> + <strong>'when she finally found'</strong> = ทำมานานหลายชั่วโมงก่อนที่จะ (ในที่สุด) เจอสิ่งที่ตามหา → Past Perfect Continuous",
+ rule:"<strong>for hours/days + when + finally + Simple Past</strong> = Past Perfect Continuous เน้นความพยายามต่อเนื่องก่อนผลลัพธ์",
+ signals:["for hours when","for days until","for a long time before finally","when he finally","when she eventually"],
+ tip:"<strong>for + ระยะเวลา + when + finally + V2</strong> = Past Perfect Continuous! เน้นความพยายามต่อเนื่องก่อนสำเร็จ"},
+
+{id:66,tense:"Past Perfect Continuous",
+ question:"The negotiations _____ for three weeks before both parties reached a compromise.",
+ options:["lasted","had been lasting","were lasting","have lasted"],correct:1,
+ why:"ข้อ B <strong>'had been lasting'</strong> ถูกต้อง 'for three weeks' (ระยะเวลา) + 'before both parties reached' (Simple Past) → Past Perfect Continuous",
+ rule:"กริยาแสดงระยะเวลา (last, continue, go on, drag on) + <strong>for + period + before + V2</strong> → Past Perfect Continuous",
+ signals:["had been lasting","had been continuing","had been going on","had been dragging on","for weeks before"],
+ tip:"กริยาเช่น 'last, continue, go on' + for + ระยะเวลา + before/until = Past Perfect Continuous แสดงระยะเวลาต่อเนื่อง"},
+
+{id:67,tense:"Past Perfect Continuous",
+ question:"The sales figures showed that the branch _____ below target for six consecutive months.",
+ options:["has performed","performed","had been performing","was performing"],correct:2,
+ why:"ข้อ C <strong>'had been performing'</strong> ถูกต้อง 'showed' (Simple Past) + 'for six consecutive months' = แสดงให้เห็นว่ากิจกรรมดำเนินต่อเนื่อง 6 เดือนก่อนถึงจุดที่ 'showed'",
+ rule:"'<strong>showed / indicated / revealed / demonstrated that + had been + V-ing</strong>' = Past Perfect Continuous ใน that-clause บอกสิ่งที่ดำเนินก่อนหน้า",
+ signals:["showed that","indicated that","revealed that","the data showed","the report revealed"],
+ tip:"'showed / revealed / indicated + that' + Past Perfect Continuous = Pattern ที่ออกบ่อยใน Business/Report Context ของ TOEIC"},
+
+// ─── SIMPLE FUTURE (68–75) ───
+{id:68,tense:"Simple Future",
+ question:"The annual shareholder meeting _____ place on the 15th of next month.",
+ options:["takes","took","will take","has taken"],correct:2,
+ why:"ข้อ C <strong>'will take'</strong> ถูกต้อง 'on the 15th of next month' = เวลาอนาคตชัดเจน + การบอกกำหนดการ → Simple Future (will)",
+ rule:"<strong>Simple Future (will)</strong>: Subject + <strong>will + V1</strong><br>ใช้กับ: 1) การทำนาย (Predictions) 2) การตัดสินใจกะทันหัน (Spontaneous Decisions) 3) สัญญา (Promises) 4) กำหนดการอย่างเป็นทางการ",
+ signals:["next month","next year","tomorrow","soon","in the future","will","shall"],
+ tip:"<strong>will</strong> ใช้เมื่อตัดสินใจในขณะพูด (ต่างจาก be going to ที่วางแผนล่วงหน้า) และใช้กับการทำนายทั่วไป"},
+
+{id:69,tense:"Simple Future",
+ question:"If the market conditions improve, the company _____ its expansion plans.",
+ options:["resumed","resumes","has resumed","will resume"],correct:3,
+ why:"ข้อ D <strong>'will resume'</strong> ถูกต้อง First Conditional: <strong>If + Simple Present, will + V1</strong> = ถ้าเงื่อนไขเป็นจริงในปัจจุบัน/อนาคต ผลลัพธ์ = will",
+ rule:"<strong>First Conditional</strong> (Real Condition):<br>If + Subject + <strong>V1 (Simple Present)</strong>, Subject + <strong>will + V1</strong><br>If it rains, we will cancel. / If you study, you will pass.",
+ signals:["if + present tense","when + present tense (future meaning)","unless","provided that","as long as"],
+ tip:"<strong>If + V1 (present)</strong> → <strong>will + V1</strong> คือ First Conditional ห้ามใช้ will ในประโยค If! (ไม่ใช่ 'If will improve')"},
+
+{id:70,tense:"Simple Future",
+ question:"The new transportation infrastructure _____ commute time for thousands of workers.",
+ options:["reduces","reduced","will reduce","has reduced"],correct:2,
+ why:"ข้อ C <strong>'will reduce'</strong> ถูกต้อง บริบทพูดถึงผลประโยชน์ในอนาคตของโครงสร้างพื้นฐานใหม่ (ยังไม่มีตอนนี้) → Simple Future",
+ rule:"การทำนายผลในอนาคตที่ยังไม่เกิดขึ้น → <strong>will + V1</strong><br>The policy will benefit... / The project will create... / The system will improve...",
+ signals:["will benefit","will create","will improve","will generate","will save","will reduce"],
+ tip:"ประโยคทำนายอนาคต โดยเฉพาะในบริบทธุรกิจ TOEIC → will + V1 เป็นคำตอบที่ถูกต้องบ่อยมาก"},
+
+{id:71,tense:"Simple Future",
+ question:"According to the project timeline, the renovation _____ complete by the end of April.",
+ options:["will be","was","is","has been"],correct:0,
+ why:"ข้อ A <strong>'will be'</strong> ถูกต้อง 'by the end of April' = เวลาอนาคต + การคาดการณ์สถานะที่จะเกิดขึ้น → will be + adjective",
+ rule:"<strong>will be + adjective</strong> = สถานะที่จะเกิดขึ้นในอนาคต: will be complete, will be ready, will be available, will be open",
+ signals:["will be ready","will be complete","will be available","will be open","by the end of (month)"],
+ tip:"<strong>will be + adj</strong> บอกสถานะในอนาคต ต่างจาก will + V1 ที่บอกการกระทำ จำ: be ready / be complete / be available = will be"},
+
+{id:72,tense:"Simple Future",
+ question:"The company will _____ any new staff until the financial situation stabilizes.",
+ options:["not hire","have not hired","not be hiring","not have hired"],correct:0,
+ why:"ข้อ A <strong>'not hire'</strong> ถูกต้อง โครงสร้าง will not (won't) + V1 = ปฏิเสธในอนาคต 'until the financial situation stabilizes' บ่งบอกเงื่อนไข",
+ rule:"<strong>will not + V1</strong> = ปฏิเสธอนาคต (Negative Future)<br>The company will not hire = won't hire<br>มักใช้บอกนโยบาย ข้อจำกัด หรือแผนที่จะไม่ทำ",
+ signals:["will not","won't","until (future condition)","unless","as long as (negative)"],
+ tip:"<strong>will not + V1 + until</strong> = ยังไม่ทำ...จนกว่า Pattern นี้ออกบ่อยใน Business TOEIC (won't release until / won't hire until)"},
+
+{id:73,tense:"Simple Future",
+ question:"I promise I _____ the contract terms with our legal team before signing anything.",
+ options:["reviewed","review","will review","am reviewing"],correct:2,
+ why:"ข้อ C <strong>'will review'</strong> ถูกต้อง 'I promise' = สัญญา → ใช้ will เพราะ will แสดง Promise/Commitment ที่ตัดสินใจในขณะพูด",
+ rule:"<strong>will</strong> แสดง Promise (สัญญา): I promise I will...<br>ต่างจาก be going to ที่แสดงแผนที่วางไว้แล้ว Will มีความรู้สึก Spontaneous / Committed มากกว่า",
+ signals:["I promise","I guarantee","I assure you","I swear","I commit to"],
+ tip:"<strong>I promise + will</strong> = สูตรสัญญา ใช้ will ไม่ใช่ be going to เพราะแสดงความตั้งใจในขณะนั้น"},
+
+{id:74,tense:"Simple Future",
+ question:"If you _____ the report by noon, we will have time to revise it before the presentation.",
+ options:["submit","submitted","will submit","are submitting"],correct:0,
+ why:"ข้อ A <strong>'submit'</strong> ถูกต้อง First Conditional: ใน If-clause ใช้ Simple Present เสมอ ไม่ใช้ will แม้จะพูดถึงอนาคต",
+ rule:"<strong>First Conditional Rule</strong>: ประโยค if ใช้ Simple Present เสมอ แม้จะหมายความถึงอนาคต<br>❌ If you will submit → ผิด<br>✓ If you submit → ถูก",
+ signals:["if you submit","if it rains","if they agree","if she arrives","if the deal closes"],
+ tip:"<strong>ห้ามใช้ will ในประโยค If</strong>! นี่คือกับดักที่ออกบ่อยที่สุดใน TOEIC Grammar ใน If-clause → Simple Present เท่านั้น"},
+
+{id:75,tense:"Simple Future",
+ question:"The new CFO _____ her first official statement to the press next Monday.",
+ options:["makes","made","will make","has made"],correct:2,
+ why:"ข้อ C <strong>'will make'</strong> ถูกต้อง 'next Monday' = เวลาอนาคตชัดเจน + ยังไม่มีแผนที่ระบุว่า 'arranged' → Simple Future (will)",
+ rule:"เวลาอนาคตชัดเจน (next Monday, next week, tomorrow morning) + การกระทำที่จะเกิดขึ้น → <strong>will + V1</strong>",
+ signals:["next Monday","next week","tomorrow","next quarter","in January","in the future"],
+ tip:"เวลาอนาคต + ไม่มีหลักฐานว่า 'จัดล่วงหน้าแล้ว' → will. ถ้ามีหลักฐานว่าจัดแล้ว (I've arranged, It's scheduled) → Present Continuous"},
+
+// ─── FUTURE CONTINUOUS (76–82) ───
+{id:76,tense:"Future Continuous",
+ question:"This time next week, the delegates _____ the final terms of the international agreement.",
+ options:["will discuss","will be discussing","discuss","are discussing"],correct:1,
+ why:"ข้อ B <strong>'will be discussing'</strong> ถูกต้อง <strong>'This time next week'</strong> = จุดเวลาในอนาคต ที่กิจกรรมกำลังดำเนินอยู่ → Future Continuous",
+ rule:"<strong>Future Continuous</strong>: will + <strong>be + V-ing</strong><br>ใช้เมื่อ: กิจกรรมกำลังดำเนินอยู่ ณ จุดเวลาในอนาคต<br>'This time next week / tomorrow / next year' + will be + V-ing",
+ signals:["this time next week","this time tomorrow","this time next month","at 3 PM tomorrow","by this afternoon (ongoing)"],
+ tip:"<strong>This time next ___</strong> = Future Continuous เสมอ! เพราะบอกว่า 'ณ เวลานั้นในอนาคต กิจกรรมกำลังดำเนินอยู่'"},
+
+{id:77,tense:"Future Continuous",
+ question:"By 3 PM tomorrow, she _____ the keynote address to over 500 industry executives.",
+ options:["delivers","delivered","will be delivering","will deliver"],correct:2,
+ why:"ข้อ C <strong>'will be delivering'</strong> ถูกต้อง 'By 3 PM tomorrow' หมายถึงกิจกรรมที่กำลังเกิดขึ้น ณ เวลา 3 โมงนั้น → Future Continuous (กิจกรรมในระหว่างดำเนิน ไม่ใช่ผลสำเร็จ)",
+ rule:"'<strong>By + เวลา + tomorrow/next day</strong>' ที่หมายถึง 'ในระหว่างเวลานั้น' → Future Continuous<br>ต่างจาก 'By 3 PM tomorrow she will have delivered' (เสร็จก่อน 3 โมง) → Future Perfect",
+ signals:["will be delivering","will be presenting","will be attending","will be meeting","during that time"],
+ tip:"<strong>by + เวลา + เน้นว่ากำลังเกิด</strong> → Future Continuous; <strong>by + เวลา + เน้นว่าเสร็จแล้ว</strong> → Future Perfect"},
+
+{id:78,tense:"Future Continuous",
+ question:"The audit team _____ the accounts all of next week, so please have all records ready.",
+ options:["will be reviewing","reviews","will review","has reviewed"],correct:0,
+ why:"ข้อ A <strong>'will be reviewing'</strong> ถูกต้อง <strong>'all of next week'</strong> = กิจกรรมดำเนินตลอดทั้งสัปดาห์หน้า → Future Continuous เน้นความต่อเนื่องในอนาคต",
+ rule:"<strong>all of next week/month/year</strong> = ตลอดช่วงเวลาในอนาคต → Future Continuous เน้นว่ากิจกรรมดำเนินตลอดช่วงนั้น",
+ signals:["all of next week","throughout next month","the whole of next year","for the entire period","all day tomorrow"],
+ tip:"<strong>all of next ___</strong> → Future Continuous! เน้นความต่อเนื่องตลอดช่วงเวลาอนาคต เช่น will be reviewing all of next week"},
+
+{id:79,tense:"Future Continuous",
+ question:"While the engineers _____ the new system, the old one must remain operational.",
+ options:["install","will be installing","are installing","installed"],correct:1,
+ why:"ข้อ B <strong>'will be installing'</strong> ถูกต้อง 'while' + บริบทอนาคต → Future Continuous เน้นกิจกรรมที่กำลังดำเนินอยู่ในช่วงอนาคต",
+ rule:"<strong>While + Future Continuous</strong> ในบริบทอนาคต: While they will be installing... / While the team will be working...<br>ใช้บอกกิจกรรมที่จะเกิดพร้อมกันในอนาคต",
+ signals:["while (future)","during the installation","throughout the process","simultaneously (future)"],
+ tip:"'While' ในบริบทอนาคต → Future Continuous เหมือนกับ 'while' อดีต → Past Continuous แต่เปลี่ยน was/were → will be"},
+
+{id:80,tense:"Future Continuous",
+ question:"The president _____ international partners throughout the coming month.",
+ options:["is meeting","will be meeting","meets","will meet"],correct:1,
+ why:"ข้อ B <strong>'will be meeting'</strong> ถูกต้อง <strong>'throughout the coming month'</strong> = ตลอดช่วงเวลาในเดือนหน้า + กิจกรรมต่อเนื่อง → Future Continuous",
+ rule:"<strong>throughout + อนาคต</strong> (throughout the coming month, throughout next year) = Future Continuous เน้นกิจกรรมที่ดำเนินตลอดช่วงนั้น",
+ signals:["throughout the coming month","throughout next quarter","throughout the conference","over the next period"],
+ tip:"<strong>throughout + อนาคต</strong> → Future Continuous! เน้นว่าจะทำตลอดช่วงนั้น ไม่ใช่แค่ครั้งเดียว"},
+
+{id:81,tense:"Future Continuous",
+ question:"At this time next year, the company _____ its centennial anniversary celebrations.",
+ options:["will be holding","holds","held","will hold"],correct:0,
+ why:"ข้อ A <strong>'will be holding'</strong> ถูกต้อง <strong>'At this time next year'</strong> = จุดเวลาในปีหน้า + กิจกรรมที่กำลังดำเนินอยู่ ณ เวลานั้น → Future Continuous",
+ rule:"<strong>At this time next year/month/week</strong> = Future Continuous เพราะบอกว่า 'ณ ช่วงเวลานั้น กำลังทำอะไรอยู่'<br>คล้าย 'at this time yesterday' → Past Continuous",
+ signals:["at this time next year","at this time tomorrow","at this point next month","at that moment (future)"],
+ tip:"สูตรสมมาตร: 'at this time yesterday' → Past Continuous; 'at this time tomorrow/next year' → Future Continuous"},
+
+{id:82,tense:"Future Continuous",
+ question:"Don't schedule meetings on Friday afternoon; our team _____ the quarterly results then.",
+ options:["presents","will be presenting","will present","is presenting"],correct:1,
+ why:"ข้อ B <strong>'will be presenting'</strong> ถูกต้อง 'on Friday afternoon' + 'then' = จุดเวลาอนาคตที่กิจกรรมกำลังดำเนิน → Future Continuous",
+ rule:"เมื่อบอกว่าจะทำอะไรอยู่ ณ เวลาใดเวลาหนึ่งในอนาคต → <strong>will be + V-ing</strong><br>'then' ในความหมายอนาคต + กิจกรรมที่กำลังดำเนิน = Future Continuous",
+ signals:["then (future)","at that time","on Friday afternoon","at 2 PM","during that period"],
+ tip:"'Don't come at 3 PM, I will be meeting a client' = อย่ามาเพราะกำลังจะยุ่ง → Future Continuous แสดงกิจกรรมที่กำลังเกิด ณ เวลานั้น"},
+
+// ─── FUTURE PERFECT (83–92) ───
+{id:83,tense:"Future Perfect",
+ question:"By the time you receive this email, the shipment _____ its destination.",
+ options:["will reach","reaches","will have reached","is reaching"],correct:2,
+ why:"ข้อ C <strong>'will have reached'</strong> ถูกต้อง <strong>'By the time + Simple Present (future meaning)'</strong> → Future Perfect แสดงว่าจะเสร็จก่อนถึงจุดนั้น",
+ rule:"<strong>Future Perfect</strong>: will + <strong>have + V3</strong><br>สูตรทอง: <strong>By the time + Simple Present, will have + V3</strong><br>= เสร็จก่อนถึงจุดเวลาอนาคตนั้น",
+ signals:["by the time","by then","by next month","by the end of","before (future)","by 2030"],
+ tip:"<strong>By the time + V1 (present), will have + V3</strong> = สูตรหลักของ Future Perfect ที่ออกบ่อยที่สุดใน TOEIC!"},
+
+{id:84,tense:"Future Perfect",
+ question:"By next March, the company _____ in operation for exactly 50 years.",
+ options:["will be","will have been","is","has been"],correct:1,
+ why:"ข้อ B <strong>'will have been'</strong> ถูกต้อง <strong>'By next March'</strong> = จุดอนาคต + ระยะเวลา 50 ปี = นับรวมถึงจุดนั้น → Future Perfect ของ 'be'",
+ rule:"<strong>will have been + ระยะเวลา</strong> = นับระยะเวลาสะสมถึงจุดอนาคต:<br>By next March, it will have been 50 years. = ถึงเดือนมีนาคมหน้า จะครบ 50 ปีพอดี",
+ signals:["will have been","for exactly 50 years","for a decade","for how long (future)","by that anniversary"],
+ tip:"<strong>By next ___, it will have been __ years</strong> = รูปแบบที่ออกบ่อยในการนับวาระครบรอบ ใช้ Future Perfect เสมอ"},
+
+{id:85,tense:"Future Perfect",
+ question:"The construction team assures us that they _____ the renovation before the grand opening.",
+ options:["complete","are completing","will have completed","completed"],correct:2,
+ why:"ข้อ C <strong>'will have completed'</strong> ถูกต้อง 'before the grand opening' = จุดอนาคต + ยืนยันว่าจะเสร็จก่อน → Future Perfect",
+ rule:"<strong>before + จุดอนาคต</strong> = Future Perfect: will have completed before...<br>ต่างจาก Simple Future ที่แค่บอกว่าจะทำ ไม่เน้นว่าจะเสร็จก่อน",
+ signals:["before the grand opening","before the deadline","before she arrives","before they launch","before the event"],
+ tip:"<strong>before + จุดอนาคต</strong> + เน้นว่า 'จะเสร็จก่อน' → Future Perfect! เห็น 'before + future event' ให้นึกถึง will have + V3 เลย"},
+
+{id:86,tense:"Future Perfect",
+ question:"If the deal closes successfully, the firm _____ its investment portfolio by over 30%.",
+ options:["has diversified","diversifies","will have diversified","will diversify"],correct:2,
+ why:"ข้อ C <strong>'will have diversified'</strong> ถูกต้อง 'If the deal closes' = First Conditional + ผลลัพธ์ที่จะสำเร็จเมื่อดีลปิด → Future Perfect แสดงผลสำเร็จ ณ จุดอนาคต",
+ rule:"First Conditional + ผลลัพธ์ที่เสร็จสิ้น: <strong>If + V1, will have + V3</strong><br>If the deal closes, the portfolio will have diversified.",
+ signals:["if the deal closes","if the merger completes","if the project finishes","when the contract is signed"],
+ tip:"First Conditional + ผลสำเร็จ → will have + V3 (Future Perfect) แทน will + V1 ปกติ เน้นว่าผลนั้นจะเสร็จสิ้นแล้ว"},
+
+{id:87,tense:"Future Perfect",
+ question:"By the time the new director assumes her role, the transition team _____ all necessary preparations.",
+ options:["will make","makes","will have made","has made"],correct:2,
+ why:"ข้อ C <strong>'will have made'</strong> ถูกต้อง <strong>'By the time + Simple Present (assumes)'</strong> → Future Perfect (will have made) = เตรียมเสร็จก่อนที่ผู้อำนวยการใหม่จะเข้ารับตำแหน่ง",
+ rule:"สูตรทอง Future Perfect: <strong>By the time + Subject + V1, Subject + will have + V3</strong><br>= เหตุการณ์ในอนาคต (V1) + สิ่งที่จะเสร็จก่อน (will have + V3)",
+ signals:["by the time she arrives","by the time it launches","by the time they finish","by the time + present"],
+ tip:"<strong>By the time + Subject + V1 (present)</strong> = Future Perfect ทั้งสิ้น! จำสูตรนี้แค่อันเดียวก็ทำข้อ Future Perfect ได้มากกว่าครึ่ง"},
+
+{id:88,tense:"Future Perfect",
+ question:"Researchers estimate that by 2030, renewable energy sources _____ fossil fuels as the primary source.",
+ options:["surpass","will have surpassed","has surpassed","will surpass"],correct:1,
+ why:"ข้อ B <strong>'will have surpassed'</strong> ถูกต้อง <strong>'by 2030'</strong> = จุดอนาคต + ผลสำเร็จที่จะเกิดขึ้นก่อนถึงปี 2030 → Future Perfect",
+ rule:"<strong>By + ปีในอนาคต (by 2030, by 2050)</strong> = Future Perfect เสมอ: will have surpassed / will have reached / will have grown",
+ signals:["by 2030","by 2050","by the end of this decade","by next century","by the turn of the year"],
+ tip:"<strong>By + ปีอนาคต</strong> = Future Perfect เสมอ! โดยเฉพาะในบริบท Prediction ของอนาคต จำไว้ว่า 'by' = ก่อนหรือเมื่อถึงเวลานั้น"},
+
+{id:89,tense:"Future Perfect",
+ question:"She _____ the entire budget analysis well before the board meeting starts tomorrow.",
+ options:["will complete","completes","will have completed","has completed"],correct:2,
+ why:"ข้อ C <strong>'will have completed'</strong> ถูกต้อง <strong>'well before the board meeting'</strong> = เน้นว่าจะเสร็จก่อนกำหนดอนาคต → Future Perfect เน้นความสำเร็จล่วงหน้า",
+ rule:"'<strong>well before</strong>' = เสร็จก่อนกำหนดมาก → Future Perfect ยิ่งเน้นชัดขึ้น: will have completed well before...",
+ signals:["well before","long before","well ahead of","ahead of the deadline","prior to the meeting (future)"],
+ tip:"<strong>well before / long before / ahead of</strong> + จุดอนาคต → Future Perfect เน้นว่าจะเสร็จก่อนกำหนดมาก"},
+
+{id:90,tense:"Future Perfect",
+ question:"By the conclusion of the summit, the negotiators hope they _____ a binding framework.",
+ options:["established","will have established","establish","are establishing"],correct:1,
+ why:"ข้อ B <strong>'will have established'</strong> ถูกต้อง <strong>'By the conclusion of the summit'</strong> = เมื่อสิ้นสุดการประชุม + ผลที่หวังว่าจะสำเร็จ → Future Perfect",
+ rule:"<strong>By the conclusion/end/close of + event</strong> = Future Perfect: will have established, will have agreed, will have finalized",
+ signals:["by the conclusion of","by the end of the summit","by the close of business","by the time the conference ends"],
+ tip:"'By the conclusion/end/close of' + เหตุการณ์อนาคต → Future Perfect! Pattern นี้ออกบ่อยมากในบริบท Business Summit/Conference"},
+
+{id:91,tense:"Future Perfect",
+ question:"The team leader confirmed that the prototype _____ three rounds of testing by Friday.",
+ options:["undergoes","will undergo","will have undergone","underwent"],correct:2,
+ why:"ข้อ C <strong>'will have undergone'</strong> ถูกต้อง <strong>'by Friday'</strong> (อนาคต) = ผลสำเร็จที่จะเสร็จก่อนถึงวันศุกร์ → Future Perfect",
+ rule:"<strong>by + วันในอนาคต (by Friday, by Monday, by next Tuesday)</strong> = Future Perfect เสมอ:<br>will have undergone / will have been reviewed / will have passed",
+ signals:["by Friday","by Monday","by next Tuesday","by the deadline","by the launch date"],
+ tip:"<strong>by + วันในอนาคต</strong> → Future Perfect ทุกครั้ง! เป็นสัญญาณที่ชัดที่สุดของ Future Perfect"},
+
+{id:92,tense:"Future Perfect",
+ question:"In six months, Ms. Park _____ this division for a full decade, an impressive milestone.",
+ options:["will lead","leads","will have led","has led"],correct:2,
+ why:"ข้อ C <strong>'will have led'</strong> ถูกต้อง 'In six months' = จุดอนาคต + 'for a full decade' = ระยะเวลาที่จะสะสมถึงจุดนั้น → Future Perfect",
+ rule:"<strong>In + ระยะเวลา (in six months, in two years)</strong> + 'for + period' = Future Perfect แสดงว่าระยะเวลานั้นจะครบเมื่อถึงจุดในอนาคต:<br>In six months, she will have led for a decade.",
+ signals:["in six months","in two years","in a decade","will have served for","will have been here for"],
+ tip:"<strong>In + อนาคต + for + ระยะเวลา</strong> = Future Perfect! บอกว่าพอถึงจุดนั้น จะทำมาครบกี่ปีแล้ว เช่น 'In 2030, I will have worked here for 10 years'"},
+
+// ─── FUTURE PERFECT CONTINUOUS (93–100) ───
+{id:93,tense:"Future Perfect Continuous",
+ question:"By next January, the legal team _____ on this case for two full years.",
+ options:["will work","will have been working","has been working","will be working"],correct:1,
+ why:"ข้อ B <strong>'will have been working'</strong> ถูกต้อง <strong>'By next January'</strong> (จุดอนาคต) + <strong>'for two full years'</strong> (ระยะเวลา) → Future Perfect Continuous เน้นระยะเวลาต่อเนื่องจนถึงจุดนั้น",
+ rule:"<strong>Future Perfect Continuous</strong>: will + <strong>have been + V-ing</strong><br>ใช้เมื่อ: กิจกรรมดำเนินต่อเนื่อง และเน้นระยะเวลาสะสมจนถึงจุดอนาคต<br>สูตร: By + อนาคต, will have been + V-ing + for + period",
+ signals:["by next January","by then","for two years (until future)","for a decade (until future)","by that point"],
+ tip:"<strong>By + อนาคต + for + ระยะเวลา</strong> → Future Perfect Continuous! เน้นระยะเวลา vs Future Perfect ที่เน้นผลสำเร็จ"},
+
+{id:94,tense:"Future Perfect Continuous",
+ question:"When the fiscal year ends, the company _____ the cost-cutting measures for 18 months.",
+ options:["will have been implementing","is implementing","has implemented","will implement"],correct:0,
+ why:"ข้อ A <strong>'will have been implementing'</strong> ถูกต้อง <strong>'When the fiscal year ends'</strong> + <strong>'for 18 months'</strong> = กิจกรรมต่อเนื่องถึงจุดอนาคต → Future Perfect Continuous",
+ rule:"<strong>When + Simple Present (future) + will have been + V-ing + for + period</strong>:<br>When the year ends, they will have been implementing for 18 months.",
+ signals:["when the year ends","when she retires","when the project closes","when they graduate"],
+ tip:"<strong>When + V1 (present, future meaning)</strong> + for + ระยะเวลา → Future Perfect Continuous! Pattern เดียวกับ 'by the time'"},
+
+{id:95,tense:"Future Perfect Continuous",
+ question:"By the time the new system is fully operational, engineers _____ on it for nearly three years.",
+ options:["will work","will have been working","are working","have worked"],correct:1,
+ why:"ข้อ B <strong>'will have been working'</strong> ถูกต้อง <strong>'By the time + present'</strong> + <strong>'for nearly three years'</strong> = ต่อเนื่องถึงจุดอนาคต → Future Perfect Continuous",
+ rule:"<strong>By the time + Subject + V1, Subject + will have been + V-ing + for + period</strong><br>เน้นว่า: ณ จุดนั้น จะทำมาต่อเนื่องครบกี่ปีแล้ว",
+ signals:["for nearly three years","for almost a decade","for over a year","for quite some time"],
+ tip:"ถ้าเห็น <strong>'for nearly / for almost / for over + ระยะเวลา'</strong> ในบริบทอนาคต → Future Perfect Continuous ทันที!"},
+
+{id:96,tense:"Future Perfect Continuous",
+ question:"She _____ her doctoral research for five years by the time she submits her thesis next spring.",
+ options:["will have been conducting","will conduct","conducts","has been conducting"],correct:0,
+ why:"ข้อ A <strong>'will have been conducting'</strong> ถูกต้อง 'by the time she submits...next spring' = จุดอนาคต + 'for five years' = ระยะเวลา → Future Perfect Continuous",
+ rule:"<strong>for + ระยะเวลา + by the time + V1 (future)</strong> = Future Perfect Continuous:<br>She will have been conducting research for five years BY THE TIME she submits.",
+ signals:["for five years by the time","for a decade when","for years before finishing","cumulative duration until"],
+ tip:"ลำดับการอ่าน: ดูว่ามี 'by the time / when + future' ไหม + มีระยะเวลา 'for ___' ไหม → ทั้งสองเจอ → Future Perfect Continuous"},
+
+{id:97,tense:"Future Perfect Continuous",
+ question:"If the project remains on schedule, the collaboration _____ continuously for a full decade by its completion.",
+ options:["lasts","will have been lasting","has lasted","will last"],correct:1,
+ why:"ข้อ B <strong>'will have been lasting'</strong> ถูกต้อง 'by its completion' (จุดอนาคต) + 'for a full decade' (ระยะเวลา) + 'continuously' (ความต่อเนื่อง) → Future Perfect Continuous",
+ rule:"กริยาแสดงระยะเวลา (last, continue, go on) + <strong>for + period + by + future point</strong> = Future Perfect Continuous:<br>It will have been lasting for a decade.",
+ signals:["will have been lasting","will have been continuing","will have been going on","for a full decade"],
+ tip:"'continuously / non-stop / without interruption' + by + อนาคต + for + ระยะเวลา → Future Perfect Continuous เน้นความต่อเนื่อง"},
+
+{id:98,tense:"Future Perfect Continuous",
+ question:"By the time the CEO steps down, she _____ the company through its most turbulent period for 15 years.",
+ options:["will have been leading","will lead","leads","has led"],correct:0,
+ why:"ข้อ A <strong>'will have been leading'</strong> ถูกต้อง 'by the time she steps down' = จุดอนาคต + 'for 15 years' = ระยะเวลา → Future Perfect Continuous เน้นระยะเวลาที่นำบริษัทมายาวนาน",
+ rule:"<strong>By the time + Subject + V1 (steps down, retires, finishes)</strong> + for + years = Future Perfect Continuous:<br>She will have been leading for 15 years.",
+ signals:["by the time she retires","by the time he steps down","by the time they graduate","by the time it concludes"],
+ tip:"'steps down / retires / graduates' = จุดอนาคต + for + ระยะเวลา → Future Perfect Continuous เกือบทุกครั้งใน TOEIC"},
+
+{id:99,tense:"Future Perfect Continuous",
+ question:"The research institute calculates that by 2028, the scientists _____ the phenomenon for over a decade.",
+ options:["will be studying","will have been studying","will study","have studied"],correct:1,
+ why:"ข้อ B <strong>'will have been studying'</strong> ถูกต้อง <strong>'by 2028'</strong> (ปีอนาคต) + <strong>'for over a decade'</strong> (ระยะเวลา 10+ ปี) → Future Perfect Continuous",
+ rule:"<strong>By + ปีอนาคต + for + over/nearly/almost + ระยะเวลา</strong> = Future Perfect Continuous:<br>By 2028, they will have been studying for over a decade.",
+ signals:["by 2028","by 2030","for over a decade","for more than ten years","for over two years"],
+ tip:"<strong>by + ปี + for over + ระยะเวลา</strong> = สูตรยืนยัน Future Perfect Continuous 100%! ทั้ง 'by 2030' และ 'for over' มาด้วยกัน"},
+
+{id:100,tense:"Future Perfect Continuous",
+ question:"By their annual conference, the two organizations _____ on this joint initiative for three consecutive years.",
+ options:["will collaborate","are collaborating","will have been collaborating","collaborate"],correct:2,
+ why:"ข้อ C <strong>'will have been collaborating'</strong> ถูกต้อง 'by their annual conference' (จุดอนาคต) + 'for three consecutive years' (ระยะเวลาต่อเนื่อง) → Future Perfect Continuous",
+ rule:"สรุปสูตร Future Perfect Continuous:<br><strong>By + จุดอนาคต, Subject + will have been + V-ing + for + ระยะเวลา</strong><br>= จะทำมาต่อเนื่องครบ X ปี เมื่อถึงจุดนั้น",
+ signals:["by their conference","by the annual meeting","for three consecutive years","for years running","continuously for"],
+ tip:"สรุปสัญญาณ Future Perfect Continuous: <strong>by + อนาคต + for + ระยะเวลา + V-ing</strong>. ต่างจาก Future Perfect (will have + V3) ที่เน้นผลสำเร็จ ไม่เน้นระยะเวลาต่อเนื่อง"}
+];
+
+const allQuestions = [...questions, ...questions2];
+
+// ════════════════════════════════════════
+//  QUIZ STATE
+// ════════════════════════════════════════
+let sessionQuestions = [];
+let currentIdx = 0;
+let score = 0;
+let wrongCount = 0;
+let answered = false;
+let startTime = null;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuiz() {
+  sessionQuestions = shuffle(allQuestions).slice(0, 10);
+  currentIdx = 0; score = 0; wrongCount = 0;
+  startTime = Date.now();
+  showScreen('quiz-screen');
+  renderQuestion();
+}
+
+function goHome() {
+  showScreen('start-screen');
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function renderQuestion() {
+  answered = false;
+  const q = sessionQuestions[currentIdx];
+  const total = sessionQuestions.length;
+  const num = currentIdx + 1;
+
+  document.getElementById('quiz-num').textContent = `ข้อที่ ${num} / ${total}`;
+  document.getElementById('quiz-tense-tag').textContent = q.tense;
+  document.getElementById('progress-bar').style.width = `${((num - 1) / total) * 100}%`;
+  document.getElementById('score-live').innerHTML = `✓ ${score} &nbsp;|&nbsp; ✗ ${wrongCount}`;
+
+  document.getElementById('q-text').textContent = q.question;
+
+  const grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D'];
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<div class="option-letter">${letters[i]}</div><span>${opt}</span>`;
+    btn.onclick = () => selectAnswer(i, q);
+    grid.appendChild(btn);
+  });
+
+  const exCard = document.getElementById('explanation-card');
+  exCard.classList.remove('show');
+
+  const nextBtn = document.getElementById('next-btn');
+  nextBtn.textContent = currentIdx === sessionQuestions.length - 1 ? 'ดูผลลัพธ์ 🏆' : 'ข้อถัดไป →';
+
+  // Scroll to top
+  document.getElementById('quiz-screen').scrollTop = 0;
+  window.scrollTo(0, 0);
+}
+
+function selectAnswer(idx, q) {
+  if (answered) return;
+  answered = true;
+
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.correct) {
+      btn.classList.add('correct');
+    } else if (i === idx && idx !== q.correct) {
+      btn.classList.add('wrong');
+    } else {
+      btn.classList.add('dimmed');
+    }
+  });
+
+  const isCorrect = idx === q.correct;
+  if (isCorrect) score++; else wrongCount++;
+
+  document.getElementById('score-live').innerHTML = `✓ ${score} &nbsp;|&nbsp; ✗ ${wrongCount}`;
+
+  // Show explanation
+  const exCard = document.getElementById('explanation-card');
+
+  const verdictEl = document.getElementById('expl-verdict');
+  verdictEl.innerHTML = isCorrect
+    ? `<span class="verdict-icon">✅</span><span style="color:var(--green)">ถูกต้อง! ยอดเยี่ยม</span>`
+    : `<span class="verdict-icon">❌</span><span style="color:var(--red)">ผิด — เฉลยคือข้อ ${['A','B','C','D'][q.correct]}: ${q.options[q.correct]}</span>`;
+
+  document.getElementById('expl-tense-chip').textContent = q.tense;
+  document.getElementById('expl-why').innerHTML = q.why;
+  document.getElementById('expl-rule').innerHTML = q.rule;
+
+  const sigContainer = document.getElementById('expl-signals');
+  sigContainer.innerHTML = q.signals.map(s => `<span class="signal-tag">${s}</span>`).join('');
+
+  document.getElementById('expl-tip').innerHTML = q.tip;
+
+  exCard.classList.add('show');
+
+  // Scroll explanation into view
+  setTimeout(() => {
+    exCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 150);
+}
+
+function nextQuestion() {
+  currentIdx++;
+  if (currentIdx >= sessionQuestions.length) {
+    showResult();
+  } else {
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function showResult() {
+  showScreen('result-screen');
+  const pct = Math.round((score / 10) * 100);
+
+  document.getElementById('ring-percent').textContent = pct + '%';
+  document.getElementById('res-correct').textContent = score + ' / 10';
+  document.getElementById('res-wrong').textContent = wrongCount + ' / 10';
+
+  const circumference = 2 * Math.PI * 80;
+  const offset = circumference - (pct / 100) * circumference;
+  document.getElementById('ring-fill').style.strokeDasharray = circumference;
+  setTimeout(() => {
+    document.getElementById('ring-fill').style.strokeDashoffset = offset;
+  }, 100);
+
+  let title, msg;
+  if (pct >= 90) {
+    title = '🏆 ยอดเยี่ยมมาก!';
+    msg = 'คุณมีความเข้าใจ Grammar ขั้นสูง เทียบเท่าระดับ TOEIC 800+';
+  } else if (pct >= 70) {
+    title = '⭐ ทำได้ดี!';
+    msg = 'คุณมีพื้นฐานแน่นแล้ว ฝึกเพิ่มอีกหน่อยก็ถึง 700+ ได้เลย';
+  } else if (pct >= 50) {
+    title = '📖 พอใช้ได้';
+    msg = 'ยังมีช่องว่างให้พัฒนา ลองอ่านคำอธิบายและทำรอบใหม่นะ';
+  } else {
+    title = '💪 ยังต้องฝึกอีก';
+    msg = 'อย่าท้อ อ่านคำอธิบายของแต่ละข้อแล้วลองใหม่ ทำบ่อยๆ จะเก่งขึ้นเอง!';
+  }
+
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-msg').textContent = msg;
+}
+</script>
+</body>
+</html>
